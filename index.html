@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Level Up Chemistry — 125 Regents Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#dc2626;--red-dark:#991b1b;--red-lt:#fef2f2;--red-mid:#fee2e2;
+  --black:#0a0a0a;--gray-900:#111111;--gray-800:#1c1c1c;--gray-700:#2a2a2a;
+  --gray-600:#404040;--gray-400:#9ca3af;--gray-200:#e5e7eb;--gray-100:#f4f4f4;
+  --white:#ffffff;
+  --correct:#16a34a;--correct-lt:#dcfce7;
+  --wrong:#dc2626;--wrong-lt:#fee2e2;
+  --bg:var(--gray-100);--card:var(--white);--text:var(--gray-900);
+  --border:#d1d5db;--muted:#6b7280;--r:12px;
+}
+body.dark{
+  --bg:var(--black);--card:var(--gray-800);--text:var(--white);
+  --border:var(--gray-700);--muted:var(--gray-400);
+  --red-lt:#450a0a;--red-mid:#7f1d1d;
+  --correct-lt:#052e16;--wrong-lt:#450a0a;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;}
+
+header{background:var(--black);position:relative;overflow:hidden;padding:0;}
+.hdr-stripe{height:6px;background:linear-gradient(90deg,var(--red) 0%,#ff4444 25%,var(--red-dark) 50%,var(--red) 75%,#ff4444 100%);background-size:200% auto;animation:stripe 3s linear infinite;}
+@keyframes stripe{to{background-position:200% center}}
+.hdr-inner{max-width:1100px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.hdr-title{display:flex;align-items:center;gap:14px;}
+.hdr-icon{width:48px;height:48px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 0 28px rgba(220,38,38,.5);}
+.hdr-text h1{font-family:'Bebas Neue';font-size:clamp(32px,4.5vw,48px);color:var(--white);letter-spacing:2px;line-height:1;}
+.hdr-text h1 span{color:var(--red);}
+.hdr-sub{font-size:11px;font-weight:600;color:rgba(255,255,255,.45);letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.hdr-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.hdr-score-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:7px 16px;}
+.hdr-score-pill .sc-n{font-family:'Bebas Neue';font-size:22px;color:var(--red);line-height:1;}
+.hdr-score-pill .sc-l{font-size:10px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1px;}
+.hdr-btns{display:flex;gap:7px;}
+.hdr-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--white);font-family:'DM Sans';font-size:13px;font-weight:700;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.hdr-btn:hover{background:var(--red);border-color:var(--red);}
+.hdr-btn.red{background:var(--red);border-color:var(--red-dark);}
+
+.main{max-width:1100px;margin:0 auto;padding:24px 18px 100px;}
+
+/* HOME */
+.home-hero{background:linear-gradient(135deg,var(--black) 0%,var(--gray-800) 100%);border-radius:16px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px solid var(--gray-700);position:relative;overflow:hidden;}
+.home-hero::before{content:'288';font-family:'Bebas Neue';font-size:200px;color:rgba(220,38,38,.05);position:absolute;right:-10px;top:50%;transform:translateY(-50%);line-height:1;pointer-events:none;}
+.hero-left h2{font-family:'Bebas Neue';font-size:clamp(26px,3.5vw,38px);color:var(--white);letter-spacing:1.5px;margin-bottom:5px;}
+.hero-left p{font-size:16px;color:rgba(255,255,255,.55);line-height:1.7;max-width:460px;}
+.hero-stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.h-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 16px;text-align:center;}
+.h-stat-n{font-family:'Bebas Neue';font-size:28px;color:var(--red);line-height:1;}
+.h-stat-l{font-size:10px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1px;}
+.hero-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-start;}
+.exam-btn{background:var(--red);border:none;color:#fff;font-family:'Bebas Neue';font-size:17px;letter-spacing:1.5px;padding:13px 28px;border-radius:10px;cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:0 4px 18px rgba(220,38,38,.4);}
+.exam-btn:hover{background:var(--red-dark);transform:translateY(-2px);}
+.outline-btn{background:transparent;border:1.5px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);font-family:'DM Sans';font-size:13px;font-weight:700;padding:8px 18px;border-radius:8px;cursor:pointer;transition:all .18s;}
+.outline-btn:hover{border-color:var(--white);color:var(--white);}
+.op-bar-wrap{margin-bottom:18px;}
+.op-label{display:flex;justify-content:space-between;margin-bottom:7px;}
+.op-label span{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;}
+.op-label strong{font-size:13px;color:var(--red);font-weight:800;}
+.op-bar{height:7px;background:var(--border);border-radius:20px;overflow:hidden;}
+.op-fill{height:100%;background:linear-gradient(90deg,var(--red-dark),var(--red));border-radius:20px;transition:width .5s ease;}
+.unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+.unit-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .2s;overflow:hidden;}
+.unit-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1);}
+.uc-stripe{height:4px;background:var(--red);}
+.uc-body{padding:14px 16px;}
+.uc-num{font-family:'Bebas Neue';font-size:11px;letter-spacing:2px;color:var(--red);}
+.uc-icon{font-size:18px;margin:3px 0;}
+.uc-name{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px;line-height:1.25;}
+.uc-meta{display:flex;justify-content:space-between;align-items:center;}
+.uc-count{font-size:11px;font-weight:700;color:var(--muted);background:var(--bg);padding:2px 7px;border-radius:6px;}
+.uc-score{font-size:13px;font-weight:800;color:var(--red);}
+.uc-progress{height:4px;background:var(--border);border-radius:20px;margin-top:10px;overflow:hidden;}
+.uc-prog-fill{height:100%;background:var(--red);border-radius:20px;transition:width .4s;}
+
+/* QUIZ */
+#view-quiz{display:none;}
+.quiz-header{background:var(--black);border-radius:var(--r);padding:16px 22px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+body.dark .quiz-header{background:var(--gray-800);border:1px solid var(--border);}
+.back-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--white);font-size:12px;font-weight:700;padding:7px 13px;border-radius:7px;cursor:pointer;font-family:'DM Sans';transition:all .18s;}
+.back-btn:hover{background:var(--red);border-color:var(--red);}
+.qh-unit{font-family:'Bebas Neue';font-size:16px;letter-spacing:1.5px;color:var(--white);}
+.qh-unit span{color:var(--red);}
+.qh-right{display:flex;align-items:center;gap:12px;}
+.q-counter{font-family:'Bebas Neue';font-size:18px;color:var(--white);letter-spacing:1px;}
+.q-counter small{font-family:'DM Sans';font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:1px;text-transform:uppercase;margin-left:3px;}
+.unit-score-badge{background:var(--red);color:#fff;font-family:'Bebas Neue';font-size:15px;letter-spacing:1px;padding:3px 12px;border-radius:20px;}
+.sub-badge{background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;letter-spacing:.5px;}
+.quiz-progress{height:5px;background:var(--border);border-radius:20px;margin-bottom:18px;overflow:hidden;}
+.quiz-prog-fill{height:100%;background:linear-gradient(90deg,var(--red-dark),var(--red));border-radius:20px;transition:width .3s;}
+.q-card{background:var(--card);border-radius:16px;padding:32px 36px;border:1px solid var(--border);box-shadow:0 2px 10px rgba(0,0,0,.05);margin-bottom:14px;animation:fadeUp .22s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.q-type-badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 9px;border-radius:10px;margin-bottom:12px;}
+.q-type-badge.math{background:#fef3c7;color:#92400e;}
+.q-type-badge.concept{background:#ede9fe;color:#5b21b6;}
+body.dark .q-type-badge.math{background:#292524;color:#fbbf24;}
+body.dark .q-type-badge.concept{background:#1e1b4b;color:#a5b4fc;}
+.q-num-badge{display:inline-block;background:var(--red);color:#fff;font-family:'Bebas Neue';font-size:11px;letter-spacing:1.5px;padding:2px 10px;border-radius:20px;margin-bottom:12px;}
+.q-text{font-size:24px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:20px;}
+.opts-grid{display:grid;gap:12px;}
+.opt-btn{display:flex;align-items:flex-start;gap:14px;width:100%;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:17px 20px;cursor:pointer;transition:all .18s;text-align:left;font-family:'DM Sans';color:var(--text);}
+.opt-btn:hover:not(.disabled){background:var(--red-lt);border-color:var(--red);}
+.opt-btn.disabled{pointer-events:none;}
+.opt-btn.correct{background:var(--correct-lt);border-color:var(--correct);}
+.opt-btn.wrong{background:var(--wrong-lt);border-color:var(--wrong);}
+.opt-letter{font-family:'Bebas Neue';font-size:15px;letter-spacing:1px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--border);color:var(--text);flex-shrink:0;transition:all .18s;}
+.opt-btn:hover:not(.disabled) .opt-letter{background:var(--red);color:#fff;}
+.opt-btn.correct .opt-letter{background:var(--correct);color:#fff;}
+.opt-btn.wrong .opt-letter{background:var(--wrong);color:#fff;}
+.opt-text{font-size:19px;font-weight:600;line-height:1.5;padding-top:3px;}
+.explanation{margin-top:14px;border-radius:10px;padding:14px 18px;display:none;animation:popIn .2s ease;}
+.explanation.open{display:block;}
+.explanation.correct{background:var(--correct-lt);border:1.5px solid var(--correct);}
+.explanation.wrong{background:var(--wrong-lt);border:1.5px solid var(--wrong);}
+.exp-result{font-size:19px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:7px;}
+.explanation.correct .exp-result{color:var(--correct);}
+.explanation.wrong .exp-result{color:var(--wrong);}
+.exp-text{font-size:18px;line-height:1.7;color:var(--text);}
+.exp-correct-label{font-size:16px;font-weight:700;color:var(--correct);margin-top:7px;}
+.next-btn{background:var(--red);border:none;color:#fff;font-family:'Bebas Neue';font-size:16px;letter-spacing:1.5px;padding:13px 34px;border-radius:10px;cursor:pointer;transition:all .2s;margin-top:10px;display:none;box-shadow:0 4px 12px rgba(220,38,38,.3);}
+.next-btn.show{display:block;}
+.next-btn:hover{background:var(--red-dark);transform:translateY(-1px);}
+
+/* RESULTS & ANALYSIS */
+#view-results{display:none;}
+.results-card{background:var(--black);border-radius:20px;padding:36px;text-align:center;position:relative;overflow:hidden;margin-bottom:16px;}
+.results-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(220,38,38,.2) 0%,transparent 65%);pointer-events:none;}
+.res-unit{font-family:'Bebas Neue';font-size:12px;letter-spacing:3px;color:rgba(255,255,255,.45);margin-bottom:6px;}
+.res-score{font-family:'Bebas Neue';font-size:72px;color:var(--white);line-height:1;letter-spacing:-2px;}
+.res-score span{color:var(--red);}
+.res-pct{font-size:22px;color:rgba(255,255,255,.65);margin-top:3px;font-weight:700;}
+.res-msg{font-size:18px;color:rgba(255,255,255,.45);margin-top:8px;}
+.res-actions{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
+.res-btn{font-family:'DM Sans';font-size:13px;font-weight:800;padding:11px 24px;border-radius:10px;cursor:pointer;transition:all .2s;border:none;}
+.res-btn.primary{background:var(--red);color:#fff;box-shadow:0 4px 12px rgba(220,38,38,.3);}
+.res-btn.primary:hover{background:var(--red-dark);}
+.res-btn.secondary{background:rgba(255,255,255,.1);color:var(--white);border:1px solid rgba(255,255,255,.2);}
+.res-btn.secondary:hover{background:rgba(255,255,255,.18);}
+
+/* ANALYSIS */
+.analysis-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 26px;margin-bottom:14px;}
+body.dark .analysis-card{background:var(--gray-800);}
+.ac-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+.ac-title{font-family:'Bebas Neue';font-size:18px;letter-spacing:1.5px;color:var(--text);}
+.ac-actions{display:flex;gap:8px;}
+.ac-btn{font-family:'DM Sans';font-size:12px;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;border:none;transition:all .18s;}
+.ac-btn.red{background:var(--red);color:#fff;}
+.ac-btn.red:hover{background:var(--red-dark);}
+.ac-btn.outline{background:transparent;border:1.5px solid var(--border);color:var(--text);}
+.ac-btn.outline:hover{border-color:var(--red);color:var(--red);}
+.sub-list{display:flex;flex-direction:column;gap:10px;}
+.sub-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;border:1px solid var(--border);}
+.sub-row.strong{border-color:#bbf7d0;background:#f0fdf4;}
+.sub-row.practice{border-color:#fde68a;background:#fffbeb;}
+.sub-row.review{border-color:#fca5a5;background:#fef2f2;}
+body.dark .sub-row.strong{background:#052e16;border-color:#166534;}
+body.dark .sub-row.practice{background:#1c1407;border-color:#92400e;}
+body.dark .sub-row.review{background:#450a0a;border-color:#991b1b;}
+.sub-name{font-size:18px;font-weight:700;color:var(--text);min-width:180px;flex-shrink:0;}
+.sub-bar-wrap{flex:1;background:var(--border);border-radius:20px;height:7px;overflow:hidden;min-width:60px;}
+.sub-bar-fill{height:100%;border-radius:20px;transition:width .5s ease;}
+.sub-row.strong .sub-bar-fill{background:var(--correct);}
+.sub-row.practice .sub-bar-fill{background:#f59e0b;}
+.sub-row.review .sub-bar-fill{background:var(--wrong);}
+.sub-score{font-size:16px;font-weight:800;white-space:nowrap;}
+.sub-row.strong .sub-score{color:var(--correct);}
+.sub-row.practice .sub-score{color:#92400e;}
+.sub-row.review .sub-score{color:var(--wrong);}
+.sub-label{font-size:19px;font-weight:700;white-space:nowrap;}
+.sub-row.strong .sub-label{color:var(--correct);}
+.sub-row.practice .sub-label{color:#92400e;}
+.sub-row.review .sub-label{color:var(--wrong);}
+
+.opt-btn.exam-selected{border-color:#6366f1;background:#eef2ff;color:#3730a3;}
+body.dark .opt-btn.exam-selected{border-color:#818cf8;background:#1e1b4b;color:#c7d2fe;}
+.exam-recorded{text-align:center;padding:14px;font-size:18px;font-weight:700;color:#6366f1;background:#eef2ff;border-radius:10px;margin-top:12px;animation:popIn .2s ease;}
+body.dark .exam-recorded{background:#1e1b4b;color:#a5b4fc;}
+.review-exp{font-size:15px;line-height:1.7;color:var(--muted);margin-top:7px;padding:10px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--border);}
+.review-item.correct .review-exp{border-left-color:var(--correct);}
+.review-item.wrong .review-exp{border-left-color:var(--wrong);}
+.review-header{font-size:16px;font-weight:800;color:var(--text);margin:18px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--border);}
+
+.review-item{background:var(--card);border-radius:10px;padding:14px 16px;margin-bottom:8px;border-left:4px solid var(--border);}
+body.dark .review-item{background:var(--gray-800);}
+.review-item.correct{border-left-color:var(--correct);}
+.review-item.wrong{border-left-color:var(--wrong);}
+.ri-q{font-size:17px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.ri-ans{font-size:15px;font-weight:600;}
+.ri-c{color:var(--correct);}
+.ri-w{color:var(--wrong);}
+
+/* PRINT VIEW */
+#view-print{display:none;}
+.print-header-bar{background:var(--black);color:#fff;padding:18px 24px;border-radius:12px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.print-header-bar h2{font-family:'Bebas Neue';font-size:20px;letter-spacing:2px;color:#fff;}
+.print-header-bar h2 span{color:var(--red);}
+.phb-btns{display:flex;gap:8px;}
+.pab{font-family:'DM Sans';font-size:12px;font-weight:700;padding:8px 18px;border-radius:8px;cursor:pointer;border:none;transition:all .18s;}
+.pab.red{background:var(--red);color:#fff;}
+.pab.gray{background:var(--gray-200);color:var(--gray-900);}
+body.dark .pab.gray{background:var(--gray-700);color:var(--white);}
+.print-unit-sec{margin-bottom:26px;}
+.pus-title{font-family:'Bebas Neue';font-size:15px;letter-spacing:2px;color:#fff;background:var(--red);display:inline-block;padding:3px 16px;border-radius:6px;margin-bottom:12px;}
+.print-q{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:7px;display:flex;gap:10px;}
+body.dark .print-q{background:var(--gray-800);}
+.pq-num{font-family:'Bebas Neue';font-size:14px;color:var(--red);min-width:30px;flex-shrink:0;letter-spacing:1px;}
+.pq-text{font-size:17px;font-weight:600;color:var(--text);line-height:1.6;}
+
+/* EXAM MODE BAR */
+.exam-bar{background:linear-gradient(90deg,var(--red-dark),var(--red));color:#fff;text-align:center;padding:9px;font-family:'Bebas Neue';font-size:13px;letter-spacing:3px;display:none;}
+.exam-bar.show{display:block;}
+
+/* FLOAT */
+.float-btns{position:fixed;bottom:22px;right:18px;display:flex;flex-direction:column;gap:9px;z-index:500;}
+.float-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 4px 16px rgba(0,0,0,.28);transition:transform .18s,box-shadow .18s;}
+.float-btn:hover{transform:translateY(-2px) scale(1.07);box-shadow:0 8px 22px rgba(0,0,0,.38);}
+.float-btn-theme{background:var(--red);}
+
+.opt-btn.exam-selected{border-color:#6366f1;background:#e0e7ff;color:#3730a3;}
+body.dark .opt-btn.exam-selected{border-color:#818cf8;background:#1e1b4b;color:#c7d2fe;}
+.opt-btn.exam-selected .opt-letter{background:#6366f1;color:#fff;}
+.exam-reveal-card{background:var(--card);border-radius:14px;padding:20px 22px;margin-bottom:12px;border:1px solid var(--border);border-left:5px solid var(--border);}
+body.dark .exam-reveal-card{background:var(--gray-800);}
+.exam-reveal-card.correct{border-left-color:var(--correct);}
+.exam-reveal-card.wrong{border-left-color:var(--wrong);}
+.er-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.er-qnum{font-family:'Bebas Neue';font-size:15px;letter-spacing:1px;color:var(--muted);}
+.er-sub{font-size:13px;font-weight:700;background:var(--bg);padding:2px 8px;border-radius:6px;color:var(--muted);}
+.er-result{font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.er-result.correct{color:var(--correct);}
+.er-result.wrong{color:var(--wrong);}
+.er-q{font-size:20px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:12px;}
+.er-answers{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.er-ans-row{font-size:16px;font-weight:600;padding:8px 12px;border-radius:8px;line-height:1.5;}
+.er-ans-row.show-correct{background:var(--correct-lt);color:var(--correct);border:1.5px solid var(--correct);}
+.er-ans-row.student-wrong{background:var(--wrong-lt);color:var(--wrong);border:1.5px solid var(--wrong);text-decoration:line-through;}
+.er-ans-row.student-correct{background:var(--correct-lt);color:var(--correct);border:1.5px solid var(--correct);}
+.er-exp{font-size:16px;line-height:1.75;color:var(--text);padding:11px 14px;background:var(--bg);border-radius:8px;border-left:3px solid var(--border);}
+.exam-reveal-card.correct .er-exp{border-left-color:var(--correct);}
+.exam-reveal-card.wrong .er-exp{border-left-color:var(--wrong);}
+.exam-reveal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
+.exam-reveal-title{font-family:'Bebas Neue';font-size:17px;letter-spacing:1.5px;color:var(--text);}
+.exam-filter-btns{display:flex;gap:8px;}
+.efb{font-family:'DM Sans';font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;border:2px solid var(--border);background:var(--bg);color:var(--text);transition:all .18s;}
+.efb:hover,.efb.active{border-color:var(--red);color:var(--red);}
+
+.er-q{font-size:19px;font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.5;}
+.er-answers{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}
+.er-ans-row{font-size:16px;padding:7px 12px;border-radius:7px;font-weight:600;}
+.er-ans-row.student-correct{background:var(--correct-lt);color:var(--correct);border:1px solid var(--correct);}
+.er-ans-row.student-wrong{background:var(--wrong-lt);color:var(--wrong);border:1px solid var(--wrong);}
+.er-ans-row.show-correct{background:var(--correct-lt);color:var(--correct);border:1px solid var(--correct);}
+.er-exp{font-size:16px;color:var(--muted);line-height:1.7;padding:8px 12px;background:var(--bg);border-radius:7px;margin-top:4px;}
+@media(max-width:580px){.unit-grid{grid-template-columns:1fr 1fr}.q-card{padding:18px}.res-score{font-size:56px}.sub-name{min-width:120px}}
+@media print{
+  header,.float-btns,#view-home,#view-quiz,#view-results,.exam-bar,.phb-btns{display:none!important;}
+  #view-print{display:block!important;}
+  body{background:#fff!important;color:#000!important;}
+  .print-header-bar{background:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;border-radius:0;}
+  .pus-title{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .print-q{break-inside:avoid;border:1px solid #ccc!important;}
+  .main{padding:0!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="exam-bar" id="examBar">⚡ FULL EXAM MODE — 50 RANDOM QUESTIONS FROM ALL 288 ⚡</div>
+<header>
+  <div class="hdr-stripe"></div>
+  <div class="hdr-inner">
+    <div class="hdr-title">
+      <div class="hdr-icon">⚗️</div>
+      <div class="hdr-text">
+        <h1>LEVEL UP <span>CHEMISTRY</span></h1>
+        <div class="hdr-sub">288 Questions · 12 Units · NYS Regents · Dr. Sacrestano</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div class="hdr-score-pill">
+        <div class="sc-n" id="globalScore">0/0</div>
+        <div class="sc-l">Total Score</div>
+      </div>
+      <div class="hdr-btns">
+        <button class="hdr-btn" onclick="showView('home')">🏠 Units</button>
+        <button class="hdr-btn" onclick="showPrintView()">🖨️ Print 125</button>
+        <button class="hdr-btn red" onclick="startExam()">⚡ Exam (50)</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+<div id="view-home">
+  <div class="home-hero">
+    <div>
+      <h2>125 THINGS YOU CAN'T GET WRONG</h2>
+      <p>24 questions per unit including math problems. Take the full 50-question exam, or master one unit at a time. Study smart. Level up. Crush the Regents.</p>
+      <div class="hero-stats">
+        <div class="h-stat"><div class="h-stat-n">12</div><div class="h-stat-l">Units</div></div>
+        <div class="h-stat"><div class="h-stat-n">288</div><div class="h-stat-l">Questions</div></div>
+        <div class="h-stat"><div class="h-stat-n" id="homeCorrect">0</div><div class="h-stat-l">Correct</div></div>
+        <div class="h-stat"><div class="h-stat-n" id="homeDone">0</div><div class="h-stat-l">Answered</div></div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <button class="exam-btn" onclick="startExam()">⚡ TAKE EXAM (50 Q)</button>
+      <button class="outline-btn" onclick="showPrintView()">🖨️ Print Original 125</button>
+    </div>
+  </div>
+  <div class="op-bar-wrap">
+    <div class="op-label"><span>Overall Progress</span><strong id="opPct">0% Complete</strong></div>
+    <div class="op-bar"><div class="op-fill" id="opFill" style="width:0%"></div></div>
+  </div>
+  <div class="unit-grid" id="unitGrid"></div>
+</div>
+
+<div id="view-quiz">
+  <div class="quiz-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="back-btn" onclick="goHome()">← Back</button>
+      <div class="qh-unit" id="quizUnitLabel">Unit · <span>Name</span></div>
+    </div>
+    <div class="qh-right">
+      <span class="sub-badge" id="subBadge"></span>
+      <span class="q-counter" id="qCounter">1<small>of 24</small></span>
+      <span class="unit-score-badge" id="scoreBadge">0/0</span>
+    </div>
+  </div>
+  <div class="quiz-progress"><div class="quiz-prog-fill" id="quizProg" style="width:0%"></div></div>
+  <div id="questionContainer"></div>
+  <button class="next-btn" id="nextBtn" onclick="nextQuestion()">NEXT →</button>
+</div>
+
+<div id="view-results">
+  <div class="results-card">
+    <div class="res-unit" id="resUnitName"></div>
+    <div class="res-score" id="resScore">0<span>/24</span></div>
+    <div class="res-pct" id="resPct"></div>
+    <div class="res-msg" id="resMsg"></div>
+    <div class="res-actions">
+      <button class="res-btn primary" onclick="retryUnit()">🔄 Retry</button>
+      <button class="res-btn secondary" onclick="goHome()">← All Units</button>
+      <button class="res-btn secondary" onclick="nextUnit()">Next Unit →</button>
+    </div>
+  </div>
+  <div class="analysis-card" id="analysisCard">
+    <div class="ac-header">
+      <div class="ac-title">📊 PERFORMANCE ANALYSIS BY SUBTOPIC</div>
+      <div class="ac-actions">
+        <button class="ac-btn red" onclick="printAnalysis()">🖨️ Print Analysis</button>
+        <button class="ac-btn outline" onclick="downloadAnalysis()">⬇️ Download .txt</button>
+      </div>
+    </div>
+    <div class="sub-list" id="subtopicList"></div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;">Legend</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;font-weight:700;">
+        <span style="color:var(--correct)">✅ STRONG ≥90%</span>
+        <span style="color:#92400e">📚 KEEP PRACTICING 70–89%</span>
+        <span style="color:var(--wrong)">⚠️ NEEDS REVIEW &lt;70%</span>
+      </div>
+    </div>
+  </div>
+  <div class="review-list" id="reviewList">
+    <div class="exam-reveal-header" id="reviewHeader" style="display:none">
+      <div class="exam-reveal-title">📋 FULL ANSWER REVIEW</div>
+      <div class="exam-filter-btns">
+        <button class="efb active" onclick="filterReview('all',this)">All</button>
+        <button class="efb" onclick="filterReview('wrong',this)">❌ Incorrect Only</button>
+        <button class="efb" onclick="filterReview('correct',this)">✅ Correct Only</button>
+      </div>
+    </div>
+    <div id="reviewCards"></div>
+  </div>
+</div>
+
+<div id="view-print">
+  <div class="print-header-bar">
+    <h2>125 THINGS YOU CAN'T GET WRONG ON THE <span>REGENTS</span></h2>
+    <div class="phb-btns">
+      <button class="pab red" onclick="window.print()">🖨️ Print / Save PDF</button>
+      <button class="pab gray" onclick="showView('home')">← Back</button>
+    </div>
+  </div>
+  <div id="printContent"></div>
+</div>
+</div>
+
+<div class="float-btns">
+  <div style="position:relative;">
+    <button class="float-btn float-btn-theme" onclick="toggleTheme()" id="themeBtn">🌙</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// QUESTION DATA — 24 per unit, tagged with sub & t (type)
+// t:"c"=concept, t:"m"=math
+// ══════════════════════════════════════════════════════════════
+var UNITS = [
+// ─── UNIT 1: Atomic Structure ─────────────────────────────────
+{name:"Atomic Structure",emoji:"⚛️",subs:["Atomic Models","Subatomic Particles","Atomic Notation","Isotopes","Ions","Electron Configuration","Spectral Lines"],qs:[
+{q:"Which statement correctly describes the locations of subatomic particles?",o:["Protons and electrons in nucleus; neutrons orbit outside","Protons and neutrons in nucleus; electrons in the electron cloud","All three particles equally distributed throughout","Electrons and protons in nucleus; neutrons orbit outside"],a:1,e:"Protons (+) and neutrons (0) are in the dense nucleus. Electrons (-) exist in the electron cloud surrounding it. Rutherford's 1911 gold foil experiment proved this nuclear model.",sub:"Subatomic Particles",t:"c"},
+{q:"³¹₁₅P has how many PROTONS?",o:["31","16","15","46"],a:2,e:"The subscript (bottom) = atomic number = number of protons = 15. The proton count defines the element — phosphorus always has 15 protons!",sub:"Atomic Notation",t:"c"},
+{q:"³²₁₆S has how many NEUTRONS?",o:["32","16","48","0"],a:1,e:"Neutrons = Mass # − Atomic # = 32 − 16 = 16. The top number (32) is mass number; bottom (16) is atomic number.",sub:"Atomic Notation",t:"m"},
+{q:"A neutral calcium atom (Z=20) has how many ELECTRONS?",o:["40","60","10","20"],a:3,e:"In a NEUTRAL atom, electrons = protons = atomic number = 20.",sub:"Subatomic Particles",t:"c"},
+{q:"Mg²⁺ (Z=12) has how many electrons?",o:["12","14","10","2"],a:2,e:"Mg²⁺ lost 2 electrons. Electrons = 12 − 2 = 10. Check: charge = 12 − 10 = +2 ✓",sub:"Ions",t:"m"},
+{q:"Which particles each have mass of approximately 1 amu?",o:["Electrons and protons","Electrons and neutrons","Protons and neutrons","All three equally"],a:2,e:"Protons and neutrons ≈ 1 amu each. Electrons have negligible mass (~1/1836 amu). Atomic mass ≈ protons + neutrons.",sub:"Subatomic Particles",t:"c"},
+{q:"Element X-10 is 20% abundant (10.0 amu) and X-11 is 80% abundant (11.0 amu). Average atomic mass?",o:["10.0 amu","10.5 amu","10.8 amu","11.0 amu"],a:2,e:"(0.20×10.0) + (0.80×11.0) = 2.0 + 8.8 = 10.8 amu. Closer to 11 because X-11 is 4× more abundant.",sub:"Isotopes",t:"m"},
+{q:"The nuclear charge of chlorine (Z=17) is:",o:["−17","0","+17","+35"],a:2,e:"Nuclear charge = number of protons × (+1) = +17. The nucleus of Cl contains 17 protons.",sub:"Subatomic Particles",t:"c"},
+{q:"Element X has electron configuration 2-8-6. What is its atomic number?",o:["6","14","16","18"],a:2,e:"Atomic number = total electrons = 2+8+6 = 16. Element X is Sulfur (S). The 6 also tells us 6 valence electrons.",sub:"Electron Configuration",t:"m"},
+{q:"Which pair of atoms are ISOTOPES?",o:["6p,6n AND 7p,6n","8p,8n AND 8p,10n","6p,8n AND 8p,6n","6p,6n AND 6p,6e"],a:1,e:"Isotopes = SAME protons + DIFFERENT neutrons. Both atoms have 8 protons (both oxygen) but different neutrons (8 vs 10). These are O-16 and O-18!",sub:"Isotopes",t:"c"},
+{q:"An electron absorbs energy and jumps up, then falls back. What is produced?",o:["A neutron is emitted","The atom becomes an ion","A specific wavelength of light (spectral line)","The electron is permanently lost"],a:2,e:"Excited state (unstable) → falls back → releases energy as a specific wavelength of light = spectral line. Each element has unique spectral lines — its atomic fingerprint!",sub:"Spectral Lines",t:"c"},
+{q:"Sodium (Z=11) electron configuration?",o:["2-9","2-8-2","2-8-1","3-8"],a:2,e:"Na (11e): Shell 1=2, Shell 2=8, Shell 3=1. Config = 2-8-1. The 1 = 1 valence electron — why Na readily forms Na⁺!",sub:"Electron Configuration",t:"c"},
+{q:"Which atomic model described the atom as a solid, indivisible sphere?",o:["Thomson's plum pudding","Rutherford's nuclear model","Dalton's billiard ball model","Bohr's planetary model"],a:2,e:"Dalton (1808): solid, indivisible 'billiard ball' spheres. Thomson added electrons (plum pudding), Rutherford discovered the nucleus, Bohr added fixed orbital levels.",sub:"Atomic Models",t:"c"},
+{q:"In Rutherford's gold foil experiment, what happened to MOST alpha particles?",o:["Bounced directly back","Were absorbed by the gold foil","Passed straight through","Were deflected at 90°"],a:2,e:"MOST passed straight through — proving atoms are mostly EMPTY SPACE. Only a tiny fraction bounced back, proving a small, dense, positive nucleus exists.",sub:"Atomic Models",t:"c"},
+{q:"Which subatomic particle determines the CHEMICAL IDENTITY of an element?",o:["Neutron — provides most mass","Electron — surrounds nucleus","Proton — unique to each element","All three equally"],a:2,e:"The PROTON determines the element! Atomic number (proton count) is unique to each element. Change proton count → change the element entirely!",sub:"Subatomic Particles",t:"c"},
+{q:"Chlorine (Cl, Z=17) has what electron configuration and how many valence electrons?",o:["2-8-5, 5 valence","2-8-8, 8 valence","2-8-7, 7 valence","2-8-6, 6 valence"],a:2,e:"Cl (17e): Shell 1=2, Shell 2=8, Shell 3=7. Config = 2-8-7. The 7 = valence electrons. Cl wants 1 more to reach a stable octet!",sub:"Electron Configuration",t:"c"},
+{q:"An atom has 15 protons and 16 neutrons. What is its mass number?",o:["15 (Nitrogen)","31 (Phosphorus)","16 (Sulfur)","30 (Phosphorus)"],a:1,e:"Mass number = protons + neutrons = 15 + 16 = 31. Protons = 15 → Phosphorus (P). This is P-31, the most common stable phosphorus isotope!",sub:"Atomic Notation",t:"m"},
+{q:"An element is written as ³⁵₁₇Cl. How many neutrons does this atom have?",o:["35","52","17","18"],a:3,e:"Neutrons = Mass # − Atomic # = 35 − 17 = 18 neutrons. This is Chlorine-35, the lighter and more abundant chlorine isotope!",sub:"Atomic Notation",t:"m"},
+{q:"An ion has 26 protons and 23 electrons. What is the charge?",o:["−3","+23","+3","−26"],a:2,e:"Ion charge = protons − electrons = 26 − 23 = +3. This is Fe³⁺ (iron lost 3 electrons → positive charge).",sub:"Ions",t:"m"},
+{q:"Cl-35 (75.77%, 34.97 amu) and Cl-37 (24.23%, 36.97 amu). Average atomic mass?",o:["35.00 amu","35.97 amu","35.45 amu","36.00 amu"],a:2,e:"(0.7577×34.97) + (0.2423×36.97) = 26.50 + 8.96 = 35.45 amu — matches the periodic table! Closer to 35 because Cl-35 is ~3× more abundant.",sub:"Isotopes",t:"m"},
+{q:"Potassium (Z=19) electron configuration?",o:["2-8-8-1","2-8-9","2-8-7-2","2-9-8"],a:0,e:"K (19e): Shell 1=2, Shell 2=8, Shell 3=8, Shell 4=1. Config = 2-8-8-1. Shell 3 fills to 8 before shell 4 starts for Period 4 elements!",sub:"Electron Configuration",t:"m"},
+{q:"An X³⁺ ion has 10 electrons. What element is X?",o:["Z=7, Nitrogen","Z=10, Neon","Z=13, Aluminum","Z=3, Lithium"],a:2,e:"Charge = protons − electrons → +3 = protons − 10 → protons = 13. Z=13 = Aluminum (Al). Al³⁺ loses 3 valence electrons to achieve a stable octet!",sub:"Ions",t:"m"},
+{q:"The KEY difference between Bohr's model and the modern electron cloud model is:",o:["Bohr's model has no nucleus; cloud model does","Bohr: fixed circular orbits; cloud model: probability regions","Bohr works for large atoms; cloud model for all","Cloud model places electrons in nucleus"],a:1,e:"Bohr (1913): electrons in fixed circular ORBITS. Modern cloud model: electrons in regions of PROBABILITY called orbitals — we can only say where they're LIKELY to be.",sub:"Atomic Models",t:"c"},
+{q:"Why does each element produce a UNIQUE set of spectral lines?",o:["Each element has a different atomic mass","Each element's electrons jump between unique energy levels specific to that element","Each element has different neutrons","Different proton counts block certain wavelengths"],a:1,e:"Each element has a UNIQUE set of energy levels. Electrons jumping between those levels release specific wavelengths of light unique to that element — the atomic 'fingerprint' used to identify elements in stars!",sub:"Spectral Lines",t:"c"}
+]},
+// ─── UNIT 2: Periodic Table ───────────────────────────────────
+{name:"Periodic Table",emoji:"🔬",subs:["Atomic Radius","Ionization Energy","Electronegativity","Group Properties","Metals & Metalloids","Periodic Trends"],qs:[
+{q:"Group with 7 valence electrons?",o:["Alkali metals","Noble gases","Alkaline earth metals","Halogens"],a:3,e:"Group 17 = HALOGENS (F, Cl, Br, I). 7 valence electrons — one short of a full octet, making them very reactive.",sub:"Group Properties",t:"c"},
+{q:"Which element has properties most similar to sodium (Na)?",o:["Magnesium (Mg)","Chlorine (Cl)","Potassium (K)","Argon (Ar)"],a:2,e:"Same GROUP = same valence electrons = similar properties. K is in Group 1 like Na — both have 1 valence electron.",sub:"Group Properties",t:"c"},
+{q:"Across Period 3 left to right, atomic radius:",o:["Increases — more protons make atom bigger","Increases — more electrons added","Decreases — nuclear charge pulls electrons closer","Stays the same"],a:2,e:"Across a period: same shells, more protons → stronger nuclear pull → electrons pulled CLOSER → SMALLER atom. Radius DECREASES left to right.",sub:"Atomic Radius",t:"c"},
+{q:"Across a period, first ionization energy:",o:["Decreases — atomic radius increases","Stays the same","Increases — greater nuclear charge holds electrons tighter","Decreases — more electrons shield nucleus"],a:2,e:"More protons + smaller radius = electrons held MORE tightly = MORE energy to remove them. IE INCREASES left to right.",sub:"Ionization Energy",t:"c"},
+{q:"Across Period 2, electronegativity:",o:["Decreases as more electrons repel","Stays constant","Increases — more protons attract bonding electrons more strongly","First increases then decreases at noble gas"],a:2,e:"More protons = stronger nuclear pull = GREATER attraction for bonding electrons. EN INCREASES left to right. Fluorine = highest EN of all elements!",sub:"Electronegativity",t:"c"},
+{q:"Down Group 1, atomic radius:",o:["Decreases — nuclear charge increases","Stays constant","Increases — additional electron shells added","Decreases — more electrons added"],a:2,e:"Down a group: each period adds a NEW electron shell → electrons farther from nucleus → LARGER atom. Radius INCREASES going down.",sub:"Atomic Radius",t:"c"},
+{q:"Down Group 17, ionization energy:",o:["Increases — nuclear charge increases","Decreases — outermost e⁻ farther from nucleus, more shielded","Stays the same","First increases then decreases"],a:1,e:"Down a group: more shells = valence electrons FARTHER from nucleus + MORE shielding → held LESS tightly → LESS energy to remove. IE DECREASES going down.",sub:"Ionization Energy",t:"c"},
+{q:"Down Group 16, electronegativity:",o:["Increases — more protons","Increases — more electrons","Decreases — valence e⁻ farther, more shielding","Stays constant"],a:2,e:"Down a group: more shells = valence electrons farther + more shielding → LESS pull on bonding electrons → EN DECREASES going down.",sub:"Electronegativity",t:"c"},
+{q:"Which element has the GREATEST electronegativity?",o:["Cesium (Cs)","Oxygen (O)","Chlorine (Cl)","Fluorine (F)"],a:3,e:"FLUORINE has the highest EN of all elements (3.98 Pauling scale). Top-right of periodic table: smallest atom in Group 17 with high nuclear charge.",sub:"Electronegativity",t:"c"},
+{q:"Highest first ionization energy?",o:["Francium (Fr)","Sodium (Na)","Fluorine (F)","Helium (He)"],a:3,e:"HELIUM has the highest first IE of all elements. Full outermost shell, tiny radius, high nuclear charge — extremely stable. Noble gases have the highest IE values.",sub:"Ionization Energy",t:"c"},
+{q:"Physical properties of METALS:",o:["Brittle, poor conductors, dull","Malleable, good conductors, lustrous","Brittle, good conductors, transparent","Flexible, poor conductors, colorless"],a:1,e:"Metals: MALLEABLE (hammered into sheets), DUCTILE (drawn into wire), good conductors of heat and electricity, LUSTROUS (shiny). Found left/center of periodic table.",sub:"Metals & Metalloids",t:"c"},
+{q:"Which elements tend NOT to bond, and why?",o:["Alkali metals — 1 valence electron","Halogens — 7 valence electrons","Alkaline earth metals — lose 2 electrons","Noble gases — full outer shell (8 valence electrons)"],a:3,e:"Noble gases (Group 18) have FULL outer shells → maximum stability → NO tendency to bond. They are called 'inert' — almost never react!",sub:"Group Properties",t:"c"},
+{q:"Which of the following is a metalloid?",o:["Sodium (Na)","Silicon (Si)","Chlorine (Cl)","Iron (Fe)"],a:1,e:"METALLOIDS have properties of both metals and nonmetals. Silicon (Si) is the most common metalloid — used in computer chips, solar panels. Other metalloids: B, Ge, As, Sb, Te.",sub:"Metals & Metalloids",t:"c"},
+{q:"Elements in the same PERIOD have the same number of:",o:["Valence electrons","Electron shells (energy levels)","Protons","Neutrons"],a:1,e:"Elements in the same PERIOD (horizontal row) have the same number of electron SHELLS. Elements in the same GROUP (vertical column) have the same number of valence electrons.",sub:"Periodic Trends",t:"c"},
+{q:"Which has the LARGEST atomic radius?",o:["Cl (Z=17)","Na (Z=11)","Mg (Z=12)","Al (Z=13)"],a:1,e:"Na is farthest LEFT in Period 3 → fewest protons → least nuclear pull → LARGEST radius. Across Period 3: Na > Mg > Al > ... > Cl (radius decreases left to right).",sub:"Atomic Radius",t:"c"},
+{q:"Metallic character going RIGHT to LEFT across a period:",o:["Decreases — more nonmetallic","Stays the same","Increases — more metallic character","First increases then decreases"],a:2,e:"Metallic character INCREASES right to left (same as atomic radius trend). Metals are on the left; nonmetals on the right. Moving left = more metallic.",sub:"Metals & Metalloids",t:"c"},
+{q:"Element A has 3 valence electrons and is in Period 3. Which element is it?",o:["Na (Group 1)","Cl (Group 17)","Al (Group 13)","Mg (Group 2)"],a:2,e:"3 valence electrons → Group 13. Period 3 → 3 electron shells. Al (Aluminum, Z=13): configuration 2-8-3. ✓",sub:"Group Properties",t:"m"},
+{q:"Which has a LARGER atomic radius: Na (Z=11) or Cl (Z=17)?",o:["Cl — more electrons","Cl — higher atomic number","Na — farther left in the period (fewer protons, less nuclear pull)","They are equal — same period"],a:2,e:"Na is LEFT of Cl in Period 3. Fewer protons = less nuclear pull = electrons less tightly held = LARGER radius. Na > Cl in atomic radius. The more protons, the smaller the atom!",sub:"Atomic Radius",t:"m"},
+{q:"Which has HIGHER ionization energy: Na (Z=11) or Mg (Z=12)?",o:["Na — it's a softer metal","Na — fewer protons","Mg — more protons, smaller radius, holds electrons more tightly","They are equal — adjacent elements"],a:2,e:"Mg is to the RIGHT of Na in Period 3. More protons + smaller radius = electrons held MORE tightly = MORE energy to remove = HIGHER IE. Mg > Na in ionization energy.",sub:"Ionization Energy",t:"m"},
+{q:"An element is in Period 4, Group 2. How many electron shells does it have?",o:["2","3","5","4"],a:3,e:"The period number = the number of electron shells. Period 4 → 4 electron shells. This element is Calcium (Ca): configuration 2-8-8-2 (4 shells). Group 2 → 2 valence electrons.",sub:"Periodic Trends",t:"m"},
+{q:"Element X has configuration 2-8-18-7. Which group is it in?",o:["Group 7","Group 18","Group 8","Group 17"],a:3,e:"The last number in the configuration = valence electrons = group number. Config ends in 7 → 7 valence electrons → Group 17 (Halogens). This element is Iodine (I, Z=53)!",sub:"Group Properties",t:"m"},
+{q:"If Element X has EN = 3.0 and Element Y has EN = 0.9, what type of bond forms?",o:["Nonpolar covalent (ΔEN=0)","Polar covalent (ΔEN 0.4–1.7)","Ionic (ΔEN ≥ 1.7)","Metallic bond"],a:2,e:"ΔEN = |3.0 − 0.9| = 2.1. ΔEN ≥ 1.7 = IONIC bond! The large electronegativity difference means electrons are fully transferred (not shared). This forms ions like X⁻ and Y⁺.",sub:"Electronegativity",t:"m"},
+{q:"An element is in Period 2, Group 16. What is its atomic number?",o:["6","8","16","2"],a:1,e:"Period 2 → 2 electron shells. Group 16 → 6 valence electrons. Configuration: 2-6. Total electrons = 8. Atomic number = 8 = Oxygen (O)! Check: O has config 2-6, which fits perfectly.",sub:"Periodic Trends",t:"m"},
+{q:"Which general trend is CORRECT as you go from left to right across Period 3?",o:["Atomic radius increases; IE decreases; EN decreases","Atomic radius decreases; IE increases; EN increases","Atomic radius increases; IE increases; EN decreases","Atomic radius decreases; IE decreases; EN increases"],a:1,e:"Left to right across a period: ATOMIC RADIUS decreases (more protons → smaller). IONIZATION ENERGY increases (harder to remove electrons). ELECTRONEGATIVITY increases (stronger pull on bonding electrons). All three trends move in the same direction!",sub:"Periodic Trends",t:"c"}
+]},
+// ─── UNIT 3: Bonding ──────────────────────────────────────────
+{name:"Bonding",emoji:"🔗",subs:["Bond Types","Polarity","Lewis Structures","Intermolecular Forces","Physical/Chemical Change","Electron Sharing & Transfer"],qs:[
+{q:"Which substance CANNOT be broken down by chemical change?",o:["Compound","Mixture","Solution","Element"],a:3,e:"Elements cannot be broken down by chemical changes — simplest pure substances. Compounds CAN be broken down. Mixtures are separated by PHYSICAL means.",sub:"Physical/Chemical Change",t:"c"},
+{q:"Physical vs chemical change — key difference:",o:["Physical produces new substances; chemical does not","Chemical produces new substances with different properties; physical does not","Both produce new substances but chemical is reversible","Physical releases energy; chemical absorbs energy"],a:1,e:"CHEMICAL change = new substances with new properties (burning, rusting, cooking). PHYSICAL change = same substance, different form (melting, cutting). Evidence of chemical: color change, gas, precipitate, energy change.",sub:"Physical/Chemical Change",t:"c"},
+{q:"What types of elements form IONIC bonds?",o:["Two nonmetals sharing electrons","Metal + nonmetal, electron transfer","Two metals sharing electrons","Metalloid and nonmetal"],a:1,e:"Ionic bonds: METAL + NONMETAL. Metal LOSES electrons → cation (+). Nonmetal GAINS electrons → anion (−). Opposite charges attract! Example: Na + Cl → NaCl.",sub:"Bond Types",t:"c"},
+{q:"In an IONIC bond, what happens to electrons?",o:["Equally shared","Unequally shared","Transferred from metal to nonmetal","Transferred from nonmetal to metal"],a:2,e:"Ionic bonds = TRANSFER of electrons! Metal LOSES → becomes cation. Nonmetal GAINS → becomes anion. Electrostatic attraction between + and − ions IS the ionic bond.",sub:"Electron Sharing & Transfer",t:"c"},
+{q:"Which bonding allows conduction in BOTH solid AND liquid states?",o:["Ionic","Covalent","Metallic","Hydrogen bonding"],a:2,e:"METALLIC bonding has a 'sea of free electrons' that flow in both solid and liquid → conducts in both! Ionic only conducts when dissolved or melted. Covalent generally doesn't conduct.",sub:"Bond Types",t:"c"},
+{q:"Which compound exhibits BOTH ionic AND covalent bonding?",o:["NaCl","HCl","NaOH","H₂O"],a:2,e:"NaOH: ionic bond between Na⁺ and OH⁻; covalent bond within the OH⁻ group. Any compound with a polyatomic ion (OH⁻, SO₄²⁻, NO₃⁻) has BOTH types of bonding!",sub:"Bond Types",t:"c"},
+{q:"When a chemical bond is broken, energy is:",o:["Neither absorbed nor released","Released — exothermic process","Absorbed — energy needed to overcome forces","Converted to mass"],a:2,e:"BREAKING bonds ALWAYS requires energy (endothermic). Like separating magnets — you must ADD energy. FORMING bonds RELEASES energy. In overall exothermic reactions: forming products' bonds releases MORE energy than breaking reactants' bonds.",sub:"Bond Types",t:"c"},
+{q:"Which forms the MOST POLAR covalent bond?",o:["H and H","C and H","H and F","O and O"],a:2,e:"Polarity depends on EN difference. H-H and O-O: ΔEN=0 (nonpolar). H-F has the GREATEST ΔEN (H=2.1, F=4.0 → ΔEN=1.9) = most polar covalent bond!",sub:"Polarity",t:"c"},
+{q:"Which molecule has 2 bonding pairs AND 2 lone pairs on the central atom?",o:["CH₄ — 4 bonding, 0 lone","NH₃ — 3 bonding, 1 lone","H₂O — 2 bonding, 2 lone","CO₂ — 4 bonding, linear"],a:2,e:"Water (H₂O): O has 6 valence e⁻. 2 used in bonds to H. 4 remaining = 2 lone pairs. This gives water its BENT shape (104.5°)!",sub:"Lewis Structures",t:"c"},
+{q:"Which molecule is POLAR?",o:["H₂","O₂","CO₂ — symmetric linear","HCl"],a:3,e:"HCl: Cl more electronegative → uneven electron distribution → permanent dipole. CO₂ has 2 polar bonds but they CANCEL (symmetric linear). H₂ and O₂ are nonpolar (identical atoms).",sub:"Polarity",t:"c"},
+{q:"Which dissolves most readily in water (polar solvent)?",o:["Motor oil (nonpolar)","Wax (nonpolar)","Gasoline (nonpolar)","NaCl (ionic/polar)"],a:3,e:"'Like dissolves like' — polar solvents dissolve polar/ionic solutes. Water is polar → dissolves NaCl. Oil, wax, gasoline are NONPOLAR → don't dissolve in water.",sub:"Polarity",t:"c"},
+{q:"Water's unusually strong intermolecular forces come from:",o:["Metallic bonds between molecules","Hydrogen bonds due to highly polar O-H bond","Ionic bonds between molecules","Extra-strong London dispersion forces"],a:1,e:"Water forms HYDROGEN BONDS — special, extra-strong IMF. The O-H bond is very polar (O highly electronegative). The δ+ H of one molecule attracts the δ− O of another. This gives water its high BP, surface tension, and specific heat!",sub:"Intermolecular Forces",t:"c"},
+{q:"Which is an ionic compound with BOTH ionic and covalent bonds?",o:["KCl — ionic only","CO₂ — covalent only","Ca(NO₃)₂ — ionic between Ca²⁺ and NO₃⁻, covalent within NO₃⁻","H₂ — covalent only"],a:2,e:"Ca(NO₃)₂: ionic bond between Ca²⁺ and NO₃⁻ ions; covalent bonds within the nitrate (NO₃⁻) polyatomic ion. Any ionic compound with a polyatomic ion has BOTH types!",sub:"Bond Types",t:"c"},
+{q:"Which is a PHYSICAL change?",o:["Iron rusting","Wood burning","Sugar dissolving in water","Baking soda reacting with vinegar"],a:2,e:"Sugar dissolving: sugar molecules spread into water but NO new substances are created — same sugar, just dispersed. Physical change! Rusting, burning, and acid-base reactions all create NEW substances = chemical changes.",sub:"Physical/Chemical Change",t:"c"},
+{q:"In a METALLIC bond, what particles are mobile and responsible for conductivity?",o:["Anions moving through the solid","The nucleus of each atom","A 'sea' of delocalized electrons freely moving","The protons sharing between atoms"],a:2,e:"Metallic bonding: metal cations sit in a 'sea' of DELOCALIZED electrons (free to move). These mobile electrons conduct electricity and heat in both solid and liquid metal.",sub:"Electron Sharing & Transfer",t:"c"},
+{q:"Nitrogen has how many valence electrons, and what does its Lewis dot look like?",o:["5 valence e⁻; 2 lone pairs + 1 unpaired","7 valence e⁻; like a halogen","3 valence e⁻; similar to aluminum","5 valence e⁻; 1 lone pair + 3 unpaired"],a:3,e:"Nitrogen (Group 15) has 5 valence electrons. Lewis dot: 1 lone pair (2e⁻) + 3 unpaired dots = 5 total. N wants 3 more electrons (3 bonds) to reach an octet. This makes N a triple-bonder (like N₂ with a triple bond)!",sub:"Lewis Structures",t:"c"},
+{q:"H has EN=2.1, F has EN=4.0. By NYS Regents rules, what bond type forms?",o:["ΔEN=2.1, metallic","ΔEN=6.1, ionic","ΔEN=1.9, polar covalent","ΔEN=1.9, ionic (ΔEN ≥ 1.7 = ionic by Regents rule)"],a:3,e:"ΔEN = |4.0−2.1| = 1.9. NYS Regents rule: ΔEN ≥ 1.7 = IONIC bond. Since 1.9 ≥ 1.7, the Regents classifies this as IONIC. When answering Regents exam questions, always apply this rule: ΔEN < 0.4 = nonpolar covalent; 0.4–1.7 = polar covalent; ≥ 1.7 = ionic.",sub:"Polarity",t:"m"},
+{q:"How many BONDING PAIRS of electrons are in CO₂?",o:["2 bonding pairs","4 bonding pairs","1 bonding pair","3 bonding pairs"],a:1,e:"CO₂: O=C=O. Each C=O double bond has 2 shared pairs. Two double bonds = 4 bonding pairs total. Lewis structure: :O::C::O: — each double bond contributes 2 pairs = 4 pairs bonding.",sub:"Lewis Structures",t:"m"},
+{q:"Total electrons in the Lewis structure of NH₃?",o:["8 electrons","5 electrons","10 electrons","6 electrons"],a:0,e:"NH₃: N has 5 valence e⁻; 3 H each contribute 1 = total 5+3=8 valence electrons shown in the Lewis structure. Arrangement: 3 N-H bonds (6e⁻) + 1 lone pair on N (2e⁻) = 8 electrons total.",sub:"Lewis Structures",t:"m"},
+{q:"Na has EN=0.9, Cl has EN=3.0. ΔEN = 2.1. What bond type forms?",o:["Nonpolar covalent (ΔEN < 0.4)","Polar covalent (ΔEN 0.4–1.7)","Metallic","Ionic (ΔEN ≥ 1.7)"],a:3,e:"ΔEN = |3.0−0.9| = 2.1 ≥ 1.7 → IONIC bond! Electrons are TRANSFERRED from Na to Cl, forming Na⁺ and Cl⁻. This is why NaCl is an ionic compound!",sub:"Bond Types",t:"m"},
+{q:"How many LONE PAIRS surround oxygen in H₂O?",o:["0 lone pairs","1 lone pair","3 lone pairs","2 lone pairs"],a:3,e:"O has 6 valence e⁻. 2 are used in bonds to H atoms (2 bonding pairs = 4e⁻). Remaining 4 e⁻ = 2 lone pairs on oxygen. These lone pairs give water its bent shape and contribute to its polarity!",sub:"Lewis Structures",t:"m"},
+{q:"What is the bond type if ΔEN = 0.3?",o:["Ionic","Polar covalent","Nonpolar covalent","Metallic"],a:2,e:"ΔEN < 0.4 → NONPOLAR COVALENT bond. Electrons are SHARED essentially equally. Examples: H-H (ΔEN=0), C-H (ΔEN=0.4, borderline), Cl-Cl (ΔEN=0). Small differences = nearly equal sharing.",sub:"Polarity",t:"m"},
+{q:"How many valence electrons does carbon (C, Z=6) have, and how many bonds can it form?",o:["2 valence, 2 bonds","6 valence, 6 bonds","4 valence, 4 bonds","8 valence, 0 bonds"],a:2,e:"C (Group 14): 4 valence electrons. To complete an octet, C needs 4 MORE electrons → forms 4 BONDS. This is why C can form single, double, or triple bonds and is the backbone of organic chemistry!",sub:"Lewis Structures",t:"c"},
+{q:"Which molecule has a LINEAR shape due to its symmetry?",o:["H₂O (bent)","NH₃ (pyramidal)","CO₂ (symmetric double bonds cancel polarity)","HCl (dipole, linear but polar)"],a:2,e:"CO₂ is LINEAR (O=C=O) with two symmetric double bonds. The bond dipoles cancel each other out → CO₂ is NONPOLAR despite having polar bonds! This is different from H₂O which is BENT (asymmetric) and polar.",sub:"Polarity",t:"c"}
+]},
+// ─── UNIT 4: Moles ────────────────────────────────────────────
+{name:"Moles",emoji:"⚗️",subs:["Molar Mass","Mole Conversions","Stoichiometry","Reaction Types","Empirical Formula","Conservation Laws"],qs:[
+{q:"Molar mass of H₂SO₄? (H=1, S=32, O=16)",o:["49 g/mol","64 g/mol","98 g/mol","194 g/mol"],a:2,e:"2(H)+S+4(O) = 2(1)+32+4(16) = 2+32+64 = 98 g/mol. Add each element's atomic mass × its subscript.",sub:"Molar Mass",t:"m"},
+{q:"Moles of atoms in 1 mole of XY₂Z?",o:["1 mole","3 moles","4 moles","6 moles"],a:2,e:"Count atoms: 1X + 2Y + 1Z = 4 atoms per formula unit. 1 mole compound = 4 moles atoms. Add all subscripts!",sub:"Mole Conversions",t:"m"},
+{q:"Moles of XY (42 g/mol) in 84g sample?",o:["0.5 mol","1 mol","2 mol","84 mol"],a:2,e:"Moles = mass ÷ molar mass = 84 ÷ 42 = 2 mol. Every 42g = 1 mole; 84g = 2 moles.",sub:"Mole Conversions",t:"m"},
+{q:"X + Y → XY is what type of reaction?",o:["Decomposition","Single replacement","Double replacement","Synthesis (combination)"],a:3,e:"SYNTHESIS: two or more substances combine to form ONE product. Multiple reactants → single product. Reverse (XY → X+Y) = decomposition.",sub:"Reaction Types",t:"c"},
+{q:"4.0g H₂ + excess O₂ → H₂O. How many grams of H₂O? (H=1, O=16)",o:["18 g","36 g","4 g","32 g"],a:1,e:"4.0g H₂ ÷ 2g/mol = 2 mol H₂. From 2H₂+O₂→2H₂O: 2 mol H₂ → 2 mol H₂O. 2 mol × 18g/mol = 36g.",sub:"Stoichiometry",t:"m"},
+{q:"What three quantities are ALWAYS conserved in all chemical reactions?",o:["Mass, volume, temperature","Mass, charge, number of atoms","Mass, pressure, temperature","Volume, charge, density"],a:1,e:"Always conserved: MASS (Law of Conservation of Mass), CHARGE (total charge same before/after), NUMBER OF ATOMS (rearranged, not created/destroyed).",sub:"Conservation Laws",t:"c"},
+{q:"Empirical formula of C₂H₄?",o:["C₂H₄","CH₄","CH₂","C₄H₈"],a:2,e:"Empirical = simplest whole-number ratio. C₂H₄: divide by GCF (2) → CH₂. C:H ratio = 1:2.",sub:"Empirical Formula",t:"m"},
+{q:"XY (42g/mol empirical), molecular mass 84 g/mol. Molecular formula?",o:["XY","X₂Y₂","X₃Y₃","X₄Y₄"],a:1,e:"84 ÷ 42 = 2. Molecular formula = empirical × 2 = X₂Y₂.",sub:"Empirical Formula",t:"m"},
+{q:"Element with LOWEST DENSITY (as gas at STP)?",o:["Helium (He)","Lithium (Li)","Carbon (C)","Hydrogen (H₂)"],a:3,e:"H₂ has molar mass = 2 g/mol (lowest). At STP, all gases = 22.4 L/mol, so lighter = less dense. H₂ is the least dense gas!",sub:"Molar Mass",t:"c"},
+{q:"Avogadro's number (6.02 × 10²³) represents:",o:["Mass of one mole in grams","Volume of one mole of gas at STP","Number of particles in one mole of any substance","Number of neutrons in one mole"],a:2,e:"Avogadro's number (6.02×10²³) = number of PARTICLES (atoms, molecules, ions) in ONE MOLE of ANY substance. It's a counting number like 'dozen' (12), but for atoms!",sub:"Conservation Laws",t:"c"},
+{q:"MX + YZ → MY + XZ is what type of reaction?",o:["Synthesis","Decomposition","Single replacement","Double replacement"],a:3,e:"DOUBLE REPLACEMENT: ions from two ionic compounds switch partners. Also called metathesis. Example: AgNO₃ + NaCl → AgCl + NaNO₃. Often produces a precipitate, gas, or water.",sub:"Reaction Types",t:"c"},
+{q:"Law of Conservation of Mass states:",o:["Energy is always conserved in reactions","The total mass of reactants equals total mass of products","Mass can be created from energy","Temperature stays constant"],a:1,e:"Conservation of Mass: mass of REACTANTS = mass of PRODUCTS. Atoms are rearranged, not created or destroyed. If 10g of reactants are used, 10g of products form!",sub:"Conservation Laws",t:"c"},
+{q:"Which is evidence of a CHEMICAL change?",o:["Ice melting into water","Salt dissolving in water","A gas being produced when vinegar and baking soda mix","Cutting paper into smaller pieces"],a:2,e:"Gas production (CO₂ from acid+carbonate) indicates a CHEMICAL change — new substances formed! Melting, dissolving, and cutting are PHYSICAL changes — no new substances created.",sub:"Reaction Types",t:"c"},
+{q:"The LIMITING REACTANT in a reaction is:",o:["The reactant in greatest mass","The reactant that is most expensive","The reactant that is completely used up first, determining maximum product","The reactant with highest molar mass"],a:2,e:"The LIMITING REACTANT is completely consumed first — it limits how much product can form. The EXCESS reactant has some left over. Example: if you have 2 buns and 5 hot dogs, buns are the limiting 'reactant' — you can only make 2 sandwiches!",sub:"Stoichiometry",t:"c"},
+{q:"Molar mass of NaCl? (Na=23, Cl=35.5)",o:["23 g/mol","35.5 g/mol","58.5 g/mol","11.5 g/mol"],a:2,e:"NaCl: Na(23) + Cl(35.5) = 58.5 g/mol. This is the mass of one mole (6.02×10²³ formula units) of table salt!",sub:"Molar Mass",t:"m"},
+{q:"How many grams are in 3.0 moles of H₂O? (H=1, O=16)",o:["18 g","54 g","36 g","6 g"],a:1,e:"Molar mass of H₂O = 2(1)+16 = 18 g/mol. 3.0 mol × 18 g/mol = 54 g. Always: moles × molar mass = grams.",sub:"Mole Conversions",t:"m"},
+{q:"How many moles are in 90g of H₂O?",o:["90 mol","18 mol","5 mol","1.5 mol"],a:2,e:"Moles = mass ÷ molar mass = 90g ÷ 18 g/mol = 5 mol. 90 grams of water = 5 moles of H₂O molecules.",sub:"Mole Conversions",t:"m"},
+{q:"Molar mass of Ca(OH)₂? (Ca=40, O=16, H=1)",o:["57 g/mol","58 g/mol","74 g/mol","114 g/mol"],a:2,e:"Ca(OH)₂: Ca(40) + 2×O(16) + 2×H(1) = 40 + 32 + 2 = 74 g/mol. Watch the parentheses — multiply O and H by 2!",sub:"Molar Mass",t:"m"},
+{q:"Empirical formula of glucose (C₆H₁₂O₆)?",o:["C₆H₁₂O₆","CH₂O","C₂H₄O₂","CHO"],a:1,e:"C₆H₁₂O₆: divide all by GCF (6) → C₁H₂O₁ = CH₂O. Empirical formula = CH₂O. Both glucose (C₆H₁₂O₆) and formaldehyde (CH₂O) have the same empirical formula!",sub:"Empirical Formula",t:"m"},
+{q:"N₂ + 3H₂ → 2NH₃. Moles of NH₃ from 6 moles of H₂?",o:["3 mol NH₃","6 mol NH₃","4 mol NH₃","2 mol NH₃"],a:2,e:"Mole ratio: 3 mol H₂ → 2 mol NH₃. 6 mol H₂ × (2 mol NH₃ / 3 mol H₂) = 4 mol NH₃. Always use mole ratios from balanced equation coefficients!",sub:"Stoichiometry",t:"m"},
+{q:"XY + Z → XZ + Y is what type of reaction?",o:["Synthesis","Decomposition","Single replacement","Double replacement"],a:2,e:"SINGLE REPLACEMENT: one element replaces another in a compound. An active element 'kicks out' a less active one. Example: Zn + CuSO₄ → ZnSO₄ + Cu (Zn replaces Cu). More reactive element always wins!",sub:"Reaction Types",t:"c"},
+{q:"What is STOICHIOMETRY?",o:["The study of atomic structure","The calculation of mass relationships in chemical reactions using mole ratios","The study of energy changes in reactions","The measurement of reaction rates"],a:1,e:"STOICHIOMETRY uses mole ratios from balanced equations to calculate amounts of reactants used and products formed. It's the math of chemistry — converting between grams, moles, and particles!",sub:"Stoichiometry",t:"c"},
+{q:"If 6.0g of C reacts with 16g of O₂ to form CO₂, what mass of CO₂ forms? (C=12, O=16)",o:["10 g","16 g","22 g","44 g"],a:2,e:"Conservation of Mass: mass of CO₂ = mass of C + mass of O₂ = 6.0 + 16 = 22 g. (Check: 6g C / 12g/mol = 0.5 mol C → 0.5 mol CO₂ → 0.5×44 = 22g ✓)",sub:"Conservation Laws",t:"m"},
+{q:"What is the coefficient of H₂O when balancing: H₂ + O₂ → H₂O?",o:["1","2","3","4"],a:1,e:"Balanced: 2H₂ + O₂ → 2H₂O. Coefficient of H₂O = 2. Balancing means same number of each atom on both sides: Left: 4H, 2O. Right: 4H, 2O ✓. Never change subscripts — only coefficients!",sub:"Conservation Laws",t:"m"}
+]},
+// ─── UNIT 5: Heat ─────────────────────────────────────────────
+{name:"Heat",emoji:"🌡️",subs:["Phase Changes","q = mcΔT","Heat of Fusion & Vaporization","Specific Heat","Heating Curves","Temperature & KE"],qs:[
+{q:"Which measures average kinetic energy of particles?",o:["Pressure","Volume","Temperature","Density"],a:2,e:"TEMPERATURE directly measures average KE of particles. Higher temp = faster particles = more KE. At absolute zero (0 K = -273°C), particle motion theoretically stops.",sub:"Temperature & KE",t:"c"},
+{q:"During a phase change, KE and PE:",o:["Both increase","KE increases; PE stays same","KE stays constant; PE increases","Both stay same"],a:2,e:"During phase change: temperature doesn't change (plateau on heating curve) → KE stays CONSTANT. Energy absorbed goes to BREAKING intermolecular forces → PE INCREASES.",sub:"Phase Changes",t:"c"},
+{q:"Temperature of solid rises (no phase change), KE and PE:",o:["KE increases; PE stays relatively constant","PE increases; KE stays same","Both increase equally","Both remain constant"],a:0,e:"On the slanted parts of a heating curve: added heat increases particle speed → KE INCREASES → temperature rises. PE stays essentially constant (particle arrangement unchanged).",sub:"Heating Curves",t:"c"},
+{q:"Heat to raise 100g water from 10°C to 100°C? (c=1 cal/g°C)",o:["1,000 cal","9,000 cal","10,000 cal","100 cal"],a:1,e:"q = mcΔT = 100 × 1 × (100−10) = 100 × 90 = 9,000 cal. ΔT = 90°C, NOT 100°C! The starting temp matters!",sub:"q = mcΔT",t:"m"},
+{q:"Heat released when 100g steam condenses? (Hv = 540 cal/g)",o:["540 cal","5,400 cal","54,000 cal","100 cal"],a:2,e:"q = m × Hv = 100 × 540 = 54,000 cal. Condensation (gas→liquid) RELEASES energy. Steam burns are worse than hot water burns because steam releases this extra 540 cal/g when condensing!",sub:"Heat of Fusion & Vaporization",t:"m"},
+{q:"Heat released when 100g water freezes? (Hf = 80 cal/g)",o:["80 cal","800 cal","8,000 cal","80,000 cal"],a:2,e:"q = m × Hf = 100 × 80 = 8,000 cal. Freezing RELEASES energy (intermolecular forces forming). Hf (80 cal/g) << Hv (540 cal/g) — it takes much more energy to vaporize than melt!",sub:"Heat of Fusion & Vaporization",t:"m"},
+{q:"Iron specific heat = 0.11 cal/g°C vs water = 1.0 cal/g°C. What does this mean?",o:["Iron requires MORE energy per gram per degree","Iron requires same energy","Iron can't absorb heat","Iron requires LESS energy per gram per degree"],a:3,e:"Lower specific heat = heats up faster and cools faster. Iron's 0.11 vs water's 1.0 means iron heats up ~9× faster than water! Water's high specific heat moderates coastal climates.",sub:"Specific Heat",t:"c"},
+{q:"Which salt absorbs most heat when dissolved?",o:["NaOH — releases heat","HCl — releases heat","NaCl — nearly neutral","NH₄NO₃ — absorbs most heat"],a:3,e:"NH₄NO₃ has a large POSITIVE heat of solution — very endothermic. Used in instant COLD PACKS! Positive ΔH = endothermic (absorbs heat). Negative ΔH = exothermic (releases heat).",sub:"q = mcΔT",t:"c"},
+{q:"SUBLIMATION is best described as:",o:["Liquid → gas directly (evaporation)","Gas → solid directly (deposition)","Solid absorbs heat until it melts","Solid → gas without passing through liquid"],a:3,e:"SUBLIMATION: solid → gas, skipping liquid. Examples: dry ice (CO₂), iodine crystals, snowpack on sunny days. Reverse = DEPOSITION (gas → solid). Both skip the liquid phase!",sub:"Phase Changes",t:"c"},
+{q:"Reference Table I tells you:",o:["Activation energy needed","Rate of reaction","Whether exothermic or endothermic; heat absorbed/released","Physical states of reactants/products"],a:2,e:"Table I shows ΔH values. Negative ΔH = exothermic (heat released). Positive ΔH = endothermic (heat absorbed). The magnitude tells you HOW MUCH heat. Always check this table on the Regents!",sub:"Heating Curves",t:"c"},
+{q:"What does a FLAT LINE on a heating curve indicate?",o:["Temperature rising rapidly","Particle motion stopping","A phase change occurring at constant temperature","Specific heat increasing"],a:2,e:"Flat lines on heating curves = PHASE CHANGES. Temperature stays CONSTANT while energy is used to BREAK (or form) intermolecular forces. KE stays constant; PE changes.",sub:"Heating Curves",t:"c"},
+{q:"Which phase change is EXOTHERMIC (releases energy)?",o:["Melting","Evaporation","Sublimation","Condensation"],a:3,e:"CONDENSATION (gas → liquid) releases energy. The gas particles slow down and intermolecular forces FORM, releasing energy. All exothermic phase changes: condensation, freezing, deposition. Endothermic: melting, evaporation, sublimation.",sub:"Phase Changes",t:"c"},
+{q:"Which has MORE ENERGY: 1g water at 100°C or 1g steam at 100°C?",o:["1g water at 100°C — same temperature so same energy","They are identical in every way","1g steam at 100°C — it has absorbed the heat of vaporization (540 cal/g)","Cannot determine without knowing pressure"],a:2,e:"Steam at 100°C has absorbed 540 cal/g of LATENT HEAT (heat of vaporization) compared to water at 100°C. Same temperature, but steam has MORE POTENTIAL ENERGY stored in broken intermolecular forces!",sub:"Phase Changes",t:"c"},
+{q:"Specific heat of water is:",o:["0.11 cal/g°C","4.18 cal/g°C and 1.00 cal/g°C (SI and calorie units)","80 cal/g","540 cal/g"],a:1,e:"Water's specific heat = 4.18 J/g°C = 1.00 cal/g°C. This is the HIGHEST specific heat of any common substance — which is why water is such an effective coolant and why coastal climates are mild!",sub:"Specific Heat",t:"c"},
+{q:"As temperature DECREASES toward absolute zero, what happens to particle motion?",o:["Particles move faster","Particles oscillate more vigorously","Particle motion approaches zero (stops at 0 K)","Particles change phase immediately"],a:2,e:"ABSOLUTE ZERO (0 Kelvin = -273°C): theoretical point where all particle motion stops. KE = 0. Temperature is a measure of average KE — no KE = no temperature. Absolute zero has never actually been achieved in practice!",sub:"Temperature & KE",t:"c"},
+{q:"On the sloped (non-flat) portions of a heating curve, what is changing?",o:["Potential energy; kinetic energy is constant","Both KE and PE equally","Kinetic energy; temperature rises","Neither KE nor PE"],a:2,e:"On the sloped parts: heat is increasing particle speed → KINETIC ENERGY increases → TEMPERATURE rises. PE stays roughly constant (no phase change = no change in intermolecular forces).",sub:"Heating Curves",t:"c"},
+{q:"Heat needed to raise 50g of water from 20°C to 80°C?",o:["4,000 cal","3,000 cal","1,000 cal","6,000 cal"],a:1,e:"q = mcΔT = 50 × 1 × (80−20) = 50 × 60 = 3,000 cal.",sub:"q = mcΔT",t:"m"},
+{q:"Heat absorbed when 25g of ice melts? (Hf = 80 cal/g)",o:["25 cal","80 cal","2,000 cal","800 cal"],a:2,e:"q = m × Hf = 25 × 80 = 2,000 cal. Ice melting ABSORBS energy (endothermic) to BREAK intermolecular hydrogen bonds holding the crystal lattice together.",sub:"Heat of Fusion & Vaporization",t:"m"},
+{q:"A 200g metal sample absorbs 400 cal and rises 20°C. What is its specific heat?",o:["0.10 cal/g°C","1.00 cal/g°C","0.05 cal/g°C","40 cal/g°C"],a:0,e:"c = q/(mΔT) = 400/(200×20) = 400/4000 = 0.10 cal/g°C. This is close to iron's specific heat (0.11 cal/g°C) — probably iron!",sub:"Specific Heat",t:"m"},
+{q:"Heat released when 50g of steam condenses to water? (Hv = 540 cal/g)",o:["27,000 cal","540 cal","5,400 cal","54,000 cal"],a:0,e:"q = m × Hv = 50 × 540 = 27,000 cal released. Condensation releases the same amount of energy as was required to vaporize. Steam burns are extremely dangerous for this reason!",sub:"Heat of Fusion & Vaporization",t:"m"},
+{q:"100g iron (c=0.11 cal/g°C) heated from 20°C to 100°C. Heat absorbed?",o:["880 cal","110 cal","8 cal","80 cal"],a:0,e:"q = mcΔT = 100 × 0.11 × (100−20) = 100 × 0.11 × 80 = 880 cal. Compare: the same temperature change for water would need 8,000 cal — nearly 9× more!",sub:"q = mcΔT",t:"m"},
+{q:"Heat needed to melt 10g of ice at 0°C? (Hf = 80 cal/g)",o:["8 cal","80 cal","800 cal","8,000 cal"],a:2,e:"q = m × Hf = 10 × 80 = 800 cal. To melt 10g of ice requires 800 cal at constant 0°C. This energy breaks the hydrogen bonds holding the ice crystal lattice together — temperature doesn't change during this phase!",sub:"Heat of Fusion & Vaporization",t:"m"},
+{q:"A student heats 50g of a substance and observes the temperature rises steadily with no plateaus. What can she conclude?",o:["The substance is changing phase","The substance has a high specific heat","No phase changes are occurring in the temperature range tested","The substance has zero latent heat always"],a:2,e:"No plateaus = NO PHASE CHANGES. Steady temperature increase = only KE increasing. If a phase change occurred, there would be a flat line on the heating curve (temperature constant while PE changes).",sub:"Heating Curves",t:"c"}
+]},
+// ─── UNIT 6: Gases ────────────────────────────────────────────
+{name:"Gases",emoji:"💨",subs:["KMT","Boyle's Law","Charles's Law","Gay-Lussac's Law","STP & Molar Volume","Diffusion","Temperature Conversion"],qs:[
+{q:"According to KMT, gas particles are:",o:["Closely packed in regular lattice","Loosely packed but touching","Randomly distributed, far apart, mostly empty space","Uniformly spaced at exactly 1nm"],a:2,e:"KMT: particles randomly distributed, FAR apart (mostly empty space), move rapidly, have negligible volume, and have elastic collisions. This explains why gases are compressible and fill their container!",sub:"KMT",t:"c"},
+{q:"KMT: conditions for IDEAL gas behavior?",o:["High pressure + low temperature","High pressure + high temperature","Low pressure + low temperature","Low pressure + high temperature"],a:3,e:"Ideal: (1) LOW PRESSURE — particles far apart, negligible volume. (2) HIGH TEMPERATURE — moving too fast for intermolecular forces to matter. LOW P + HIGH T = most ideal!",sub:"KMT",t:"c"},
+{q:"KMT: conditions for GREATEST DEVIATION from ideal?",o:["Low P + high T","High T + large particle size","Low P + small size","High P + low T"],a:3,e:"HIGH P + LOW T: High pressure forces particles close (volume matters). Low temperature allows intermolecular forces to act. Real gases deviate most when close to liquefying!",sub:"KMT",t:"c"},
+{q:"Standard Temperature and Pressure (STP)?",o:["0°C (273K) and 1 atm (101.3 kPa)","25°C (298K) and 1 atm","0°C and 0 atm","100°C and 1 atm"],a:0,e:"STP = 0°C (273 K) and 1 atm (101.3 kPa). At STP, 1 mole of any ideal gas = 22.4 L (molar volume). Always!",sub:"STP & Molar Volume",t:"c"},
+{q:"Fastest diffusing gas (Graham's Law)?",o:["CO₂ (44 g/mol)","O₂ (32 g/mol)","N₂ (28 g/mol)","H₂ (2 g/mol)"],a:3,e:"Lighter gases diffuse FASTER. At same temperature, all gases have same average KE. Since KE=½mv², lighter m → faster v. H₂ (M=2) diffuses fastest!",sub:"Diffusion",t:"c"},
+{q:"Boyle's Law: pressure increases (constant T), volume:",o:["Increases","Stays same","Decreases (inverse)","First increases then decreases"],a:2,e:"BOYLE'S LAW: P₁V₁=P₂V₂. P and V are inversely proportional. Double pressure → half volume. Squeeze a balloon = increase pressure = smaller volume!",sub:"Boyle's Law",t:"c"},
+{q:"Gay-Lussac's Law: pressure-temperature relationship (constant V)?",o:["Inversely proportional","No relationship","Directly proportional (P↑ → T↑)","P decreases as T increases"],a:2,e:"GAY-LUSSAC'S LAW: P₁/T₁=P₂/T₂ (temperature in KELVIN). Directly proportional. Heat a gas in rigid container → faster particles → more collisions → HIGHER PRESSURE. Use Kelvin always!",sub:"Gay-Lussac's Law",t:"c"},
+{q:"Charles's Law: temperature increases (constant P), volume:",o:["Decreases","Stays same","First increases then decreases","Increases (direct relationship)"],a:3,e:"CHARLES'S LAW: V₁/T₁=V₂/T₂ (temperature in KELVIN). Directly proportional. Heat a balloon → particles move faster → need more space → volume INCREASES. Use Kelvin always!",sub:"Charles's Law",t:"c"},
+{q:"Gas is LEAST SOLUBLE under what conditions?",o:["Low T + high P","Low T + low P","High T + high P","High T + low P"],a:3,e:"Gas solubility DECREASES with higher temperature (gas particles escape liquid) and DECREASES with lower pressure. LEAST soluble = HIGH temp + LOW pressure. Warm soda goes flat faster!",sub:"KMT",t:"c"},
+{q:"Avogadro's Law: equal volumes at same T and P have equal:",o:["Densities","Molar masses","Chemical identities","Numbers of moles"],a:3,e:"AVOGADRO'S LAW: equal volumes of gas at same T and P contain equal numbers of MOLES. At STP: 1 mole of ANY gas = 22.4 L, whether H₂, O₂, or CO₂!",sub:"STP & Molar Volume",t:"c"},
+{q:"Convert 27°C to Kelvin:",o:["27 K","246 K","300 K","573 K"],a:2,e:"K = °C + 273 = 27 + 273 = 300 K. ALWAYS convert to Kelvin for gas law calculations! Using Celsius would give wrong answers because gas laws need an absolute temperature scale.",sub:"Temperature Conversion",t:"m"},
+{q:"All gas particles at the same TEMPERATURE have:",o:["Same speed","Same mass","Same average kinetic energy","Same volume"],a:2,e:"At the same temperature, ALL gas particles have the same AVERAGE KINETIC ENERGY, regardless of identity. Heavier particles move slower; lighter particles move faster — but average KE is equal.",sub:"KMT",t:"c"},
+{q:"Volume of 1 mole of gas at STP?",o:["22.4 mL","1.0 L","224 L","22.4 L"],a:3,e:"MOLAR VOLUME at STP = 22.4 L/mol for any ideal gas. This applies to H₂, He, N₂, CO₂ — doesn't matter what the gas is! 22.4 L of any gas at STP contains 1 mole = 6.02×10²³ particles.",sub:"STP & Molar Volume",t:"c"},
+{q:"Increasing temperature of gas in CLOSED container — pressure:",o:["Decreases","Stays same","Increases","First increases then decreases"],a:2,e:"Closed container = constant volume. Higher T → faster particles → more frequent + forceful collisions with walls → INCREASED PRESSURE. Gay-Lussac's Law: P directly proportional to T.",sub:"Gay-Lussac's Law",t:"c"},
+{q:"Which gas law applies when both temperature AND volume change?",o:["Boyle's Law","Charles's Law","Gay-Lussac's Law","Combined Gas Law"],a:3,e:"COMBINED GAS LAW: P₁V₁/T₁ = P₂V₂/T₂. Used when two of the three variables (P, V, T) change simultaneously. It combines all three gas laws into one equation!",sub:"Boyle's Law",t:"c"},
+{q:"How does effusion differ from diffusion?",o:["They are identical processes","Effusion: gas escapes through a tiny hole; diffusion: gas spreads throughout a space","Effusion is faster for heavier gases","Diffusion only occurs in liquids"],a:1,e:"DIFFUSION: gas molecules spread throughout a space (like perfume spreading in a room). EFFUSION: gas escapes through a tiny pinhole into a vacuum. Both are faster for lighter gases (Graham's Law).",sub:"Diffusion",t:"c"},
+{q:"Gas occupies 4L at 2 atm. New volume at 8 atm (constant T)?",o:["16 L","8 L","1 L","2 L"],a:2,e:"Boyle's Law: P₁V₁=P₂V₂. 2×4 = 8×V₂. V₂ = 8/8 = 1 L. Pressure quadrupled → volume quartered. Inverse relationship confirmed!",sub:"Boyle's Law",t:"m"},
+{q:"Gas at 27°C occupies 3L. Volume at 127°C (constant P)?",o:["6 L","1.5 L","4 L","12 L"],a:2,e:"Charles's Law: V₁/T₁=V₂/T₂. T₁=27+273=300K, T₂=127+273=400K. V₂ = 3×(400/300) = 3×(4/3) = 4 L. ALWAYS convert to Kelvin first!",sub:"Charles's Law",t:"m"},
+{q:"Gas at 1 atm and 300K — pressure at 600K (constant V)?",o:["0.5 atm","1 atm","4 atm","2 atm"],a:3,e:"Gay-Lussac: P₁/T₁=P₂/T₂. 1/300=P₂/600. P₂=600/300=2 atm. Temperature doubled → pressure doubled (direct relationship). Always use Kelvin!",sub:"Gay-Lussac's Law",t:"m"},
+{q:"How many moles of gas are in 44.8L at STP?",o:["1 mol","22.4 mol","2 mol","0.5 mol"],a:2,e:"At STP, 1 mol = 22.4 L. 44.8 L ÷ 22.4 L/mol = 2 mol. Simple division by molar volume at STP!",sub:"STP & Molar Volume",t:"m"},
+{q:"Gas: 27°C, 2 atm, 5L. Changed to 127°C and 4 atm. New volume?",o:["5 L","2.5 L","10 L","3.33 L"],a:3,e:"Combined Gas Law: P₁V₁/T₁ = P₂V₂/T₂. Convert to Kelvin: T₁=300K, T₂=400K. V₂ = P₁V₁T₂/(T₁P₂) = (2×5×400)/(300×4) = 4000/1200 = 3.33 L. Note: pressure doubling alone would give 2.5 L (Boyle's), but the temperature increase (×4/3) corrects it upward to 3.33 L. Always convert °C to Kelvin!",sub:"Gas Laws",t:"m"},
+{q:"A gas at 2 atm, 3.0 L, and 300 K has its pressure changed to 1 atm and temperature raised to 600 K. What is the new volume?",o:["12 L","3 L","6 L","1.5 L"],a:0,e:"Combined Gas Law: V₂=P₁V₁T₂/(T₁P₂)=(2×3×600)/(300×1)=3600/300=12 L. Pressure halved (×2 volume) AND temperature doubled (×2 volume) — both effects increase volume. Combined = 4× original volume!",sub:"Gas Laws",t:"m"},
+{q:"Convert 150°C to Kelvin:",o:["150 K","123 K","273 K","423 K"],a:3,e:"K = °C + 273 = 150 + 273 = 423 K. Always add 273 to convert Celsius to Kelvin. This is required for ALL gas law calculations!",sub:"Temperature Conversion",t:"m"},
+{q:"A balloon containing gas at 760 mmHg and 0°C is moved to a location where T=27°C and P=380 mmHg. How does the volume change?",o:["Volume stays the same","Volume doubles","Volume quadruples","Volume halves"],a:1,e:"Combined: V₂=V₁×(P₁/P₂)×(T₂/T₁)=V₁×(760/380)×(300/273)=V₁×2×1.099≈2.2×V₁. Approximately doubles. Pressure halved (volume×2) and temperature slightly increased — volume approximately doubles.",sub:"Boyle's Law",t:"m"}
+]}
+,
+{name:"Solutions",emoji:"🧪",subs:["Solution Types","Solubility","Concentration","Colligative Properties","Separation Methods","Table H"],qs:[
+{q:"Which matter can be separated by physical means?",o:["Element","Compound","Pure substance","Mixture"],a:3,e:"MIXTURES can be separated by physical means — components are not chemically bonded. Filtration separates by particle size; distillation by boiling point. Elements and compounds need chemical reactions to separate.",sub:"Separation Methods",t:"c"},
+{q:"How does DISTILLATION separate a liquid mixture?",o:["Filtering by particle size","Using a magnetic field","Using different boiling points to vaporize and recondense components","Applying centrifugal force"],a:2,e:"Distillation exploits DIFFERENT BOILING POINTS. Lower BP component vaporizes first, travels through a condenser, re-liquefies, and is collected separately. Used in oil refining and water purification!",sub:"Separation Methods",t:"c"},
+{q:"Which substance is INSOLUBLE in water (Table F)?",o:["NaCl — most sodium compounds soluble","KNO₃ — all nitrates soluble","Na₂SO₄ — most sulfates soluble","AgCl — silver chloride insoluble"],a:3,e:"Table F: AgCl is INSOLUBLE — forms a WHITE PRECIPITATE when Ag⁺ meets Cl⁻. Most sodium and nitrate compounds ARE soluble. Always use Table F for solubility questions on the Regents!",sub:"Solubility",t:"c"},
+{q:"When NaCl dissolves completely in water, the result is:",o:["A heterogeneous mixture","A suspension","A colloid","A homogeneous mixture (solution)"],a:3,e:"SOLUTION = homogeneous mixture — completely uniform at molecular level. NaCl separates into Na⁺ and Cl⁻ dispersed evenly. Symbol (aq) = aqueous solution. Cannot be separated by filtration!",sub:"Solution Types",t:"c"},
+{q:"Approximate vapor pressure of water at 50°C (Table H)?",o:["17.5 mmHg","760 mmHg","55 mmHg","92 mmHg"],a:3,e:"From Table H: water at 50°C ≈ 92 mmHg. At 100°C, VP = 760 mmHg (= 1 atm = boiling point). Table H is provided on the Regents — read it directly!",sub:"Table H",t:"c"},
+{q:"On Table H, which liquid has the WEAKEST intermolecular forces?",o:["Water — highest boiling point","Ethanol","Propanone (acetone)","Propane — highest vapor pressure"],a:3,e:"Higher vapor pressure = weaker IMF (easier to evaporate). Propane has HIGHEST VP on Table H → weakest IMF. Water has LOWEST VP (strongest H-bonds). High VP = volatile!",sub:"Table H",t:"c"},
+{q:"As temperature increases, solubility of most SOLID solutes:",o:["Decreases","Stays the same","First decreases then increases","Increases"],a:3,e:"Most SOLID solutes: higher temp = more energy = dissolves more readily. Hot coffee dissolves more sugar! EXCEPTION: gases become LESS soluble as temp increases. The Regents tests this difference!",sub:"Solubility",t:"c"},
+{q:"As temperature INCREASES, gas solubility in water:",o:["Increases","Stays constant","First increases then decreases","Decreases"],a:3,e:"Gas solubility DECREASES with higher temperature (opposite of solids!). Warmer liquid → gas molecules gain energy and escape → less dissolved. Warm soda goes flat faster; rivers have less O₂ in summer!",sub:"Solubility",t:"c"},
+{q:"10g of XY per 100g water at 10°C; solubility at 10°C is 15g/100g. Solution type?",o:["Saturated — at maximum","Supersaturated — above maximum","Unsaturated — below maximum","Concentrated"],a:2,e:"UNSATURATED: contains LESS than maximum (10 < 15g). SATURATED = exactly maximum. SUPERSATURATED = more than maximum (unstable!). Always compare actual dissolved to solubility at that temperature!",sub:"Solubility",t:"c"},
+{q:"ppm of 0.010g O₂ dissolved in 10,000g water?",o:["0.001 ppm","0.1 ppm","10 ppm","1.0 ppm"],a:3,e:"ppm = (mass solute / mass solution) × 10⁶ = (0.010 / 10,000) × 10⁶ = 1.0 ppm. Used for very dilute solutions — environmental standards and drinking water quality.",sub:"Concentration",t:"m"},
+{q:"Effect of adding solute on BOILING POINT of water?",o:["Decreases BP","No effect","Increases BP","First increases then decreases"],a:2,e:"BOILING POINT ELEVATION: adding any solute raises BP above 100°C. Solute particles prevent water from escaping to vapor → higher temp needed. Colligative property — depends only on amount of solute!",sub:"Colligative Properties",t:"c"},
+{q:"Effect of adding solute on FREEZING POINT of water?",o:["Raises FP above 0°C","No effect","Lowers FP below 0°C","Makes solution supersaturated"],a:2,e:"FREEZING POINT DEPRESSION: solute LOWERS FP. Solute disrupts ice crystal lattice formation. Examples: salt on icy roads, antifreeze in radiators, saltwater freezes lower than freshwater!",sub:"Colligative Properties",t:"c"},
+{q:"What does AQUEOUS SOLUTION mean?",o:["A solution with acidic pH","A solution in any solvent","Water is the solvent, symbolized (aq)","A supersaturated solution"],a:2,e:"AQUEOUS = water as the SOLVENT. Written as (aq). Example: NaCl(aq) = NaCl dissolved in water. From Latin 'aqua' = water. Most chemistry lab reactions are aqueous!",sub:"Solution Types",t:"c"},
+{q:"A SATURATED solution is one that:",o:["Contains the maximum dissolved solute at that temperature","Contains more than the maximum","Contains less than the maximum","Has equal masses of solute and solvent"],a:0,e:"SATURATED = maximum dissolved solute at that temperature. Adding more solute → won't dissolve (settles). Changing temperature changes the saturation point. Unsaturated: less than max. Supersaturated: more than max (unstable)!",sub:"Solubility",t:"c"},
+{q:"Which factor does NOT increase the RATE of dissolving?",o:["Stirring the solution","Increasing temperature","Using finer particles (more surface area)","Increasing pressure on a solid solute"],a:3,e:"Pressure affects GAS solubility (Henry's Law) but has little effect on SOLID solute dissolving rate. Stirring, temperature, and smaller particle size all increase dissolving rate by increasing collisions.",sub:"Solubility",t:"c"},
+{q:"The SOLVENT in a solution is:",o:["The substance in smaller amount","The substance being dissolved","The substance in greater amount that does the dissolving","The product of dissolving"],a:2,e:"SOLVENT: present in GREATER AMOUNT — does the dissolving. SOLUTE: present in smaller amount — gets dissolved. In saltwater: water = solvent (more), NaCl = solute (less).",sub:"Solution Types",t:"c"},
+{q:"Molarity if 2.0 mol NaCl dissolved in 500 mL of solution?",o:["1.0 M","4.0 M","0.5 M","2.0 M"],a:1,e:"Molarity = moles ÷ liters = 2.0 mol ÷ 0.500 L = 4.0 M. ALWAYS convert mL to L! Molarity = moles of solute per liter of SOLUTION (not solvent).",sub:"Concentration",t:"m"},
+{q:"Molarity if 5.85g NaCl (MM = 58.5 g/mol) dissolved in 1.0 L?",o:["5.85 M","1.0 M","0.10 M","0.50 M"],a:2,e:"Moles NaCl = 5.85g ÷ 58.5 g/mol = 0.10 mol. Molarity = 0.10 mol ÷ 1.0 L = 0.10 M. Always: grams → moles → molarity!",sub:"Concentration",t:"m"},
+{q:"ppm if 0.50g solute dissolved in 500,000g solution?",o:["0.001 ppm","10 ppm","1.0 ppm","0.10 ppm"],a:2,e:"ppm = (0.50 / 500,000) × 10⁶ = 1.0 ppm. Think of ppm as mg per kg. 0.50g = 500 mg; 500,000g = 500 kg. 500 mg / 500 kg = 1.0 mg/kg = 1.0 ppm.",sub:"Concentration",t:"m"},
+{q:"New boiling point if 1.0 mol NaCl dissolved in 1L water? (NaCl produces 2 ions; ΔBP = 0.51°C per mole of particles)",o:["100.51°C","101.02°C","100.26°C","102.00°C"],a:1,e:"NaCl → Na⁺ + Cl⁻ = 2 particles per formula unit. 1.0 mol NaCl × 2 = 2.0 mol particles. ΔBP = 2.0 × 0.51 = 1.02°C. New BP = 100 + 1.02 = 101.02°C. Electrolytes have greater colligative effects!",sub:"Colligative Properties",t:"m"},
+{q:"KNO₃ solubility at 20°C is 31g/100g water. Is 50g dissolved in 100g water supersaturated?",o:["No — it is unsaturated; the solution has room to dissolve more solute","Yes — supersaturated (50g > 31g max)","No — it is exactly saturated","Cannot be determined"],a:1,e:"50g > 31g (maximum at 20°C) → SUPERSATURATED! More dissolved than maximum. This unstable state can form by cooling a hot saturated solution. Any disturbance causes rapid crystallization!",sub:"Solubility",t:"m"},
+{q:"A solution is 40% NaOH by mass and has total mass 250g. How many grams of NaOH?",o:["40g","100g","160g","250g"],a:1,e:"Mass NaOH = 40% × 250g = 0.40 × 250 = 100g. Percent by mass = (mass solute / mass solution) × 100. The other 150g is water (the solvent).",sub:"Concentration",t:"m"},
+{q:"When a solute is added to water, VP decreases because:",o:["Solute lowers temperature","Solute particles block water molecules from escaping to vapor","Solute increases IMF throughout solution","Solute reacts with water"],a:1,e:"VAPOR PRESSURE DEPRESSION: solute occupies surface positions → FEWER water molecules can escape to gas phase → LOWER VP. Must heat more to reach atmospheric pressure → HIGHER boiling point. All are colligative effects!",sub:"Colligative Properties",t:"c"},
+{q:"Both BP elevation and FP depression are caused by:",o:["Solute reacting with water to form new bonds","Solute ions conducting electricity","Solute particles disrupting the normal water structure at phase boundaries","Temperature changes from dissolving"],a:2,e:"BOTH colligative properties result from solute particles DISRUPTING water's normal behavior: at the surface (preventing evaporation → higher BP) and in the crystal lattice (preventing freezing → lower FP). Both depend only on how MANY solute particles, not what kind!",sub:"Colligative Properties",t:"c"}
+]}
+,
+{name:"Kinetics",emoji:"⚡",subs:["Reaction Rates","Activation Energy & Catalysts","Equilibrium","Le Chatelier's Principle","Potential Energy Diagrams"],qs:[
+{q:"Which factor does NOT increase reaction rate?",o:["Increasing concentration","Increasing temperature","Adding a catalyst","Decreasing surface area"],a:3,e:"DECREASING surface area DECREASES rate — fewer surface particles, fewer collisions. All others INCREASE rate: concentration (more particles/volume), temperature (more energy), catalyst (lower activation energy).",sub:"Reaction Rates",t:"c"},
+{q:"How does a CATALYST affect activation energy?",o:["Increases activation energy","Becomes part of the product","Decreases activation energy — more particles can react","Only changes temperature"],a:2,e:"Catalyst provides an ALTERNATIVE PATHWAY with LOWER ACTIVATION ENERGY. More collisions succeed → faster reaction. Catalyst is NOT consumed — it is regenerated. Doesn't change ΔH!",sub:"Activation Energy & Catalysts",t:"c"},
+{q:"For an EXOTHERMIC reaction, PE of reactants vs products?",o:["PE reactants < PE products; ΔH positive","PE equal; no heat change","PE products < PE reactants; ΔH negative (energy released)","Heat from surroundings; ΔH positive"],a:2,e:"EXOTHERMIC: reactants have HIGHER PE → products. Excess energy released as heat. ΔH NEGATIVE. On PE diagram: reactants sit ABOVE products. Energy hill (Ea) is still present going both directions.",sub:"Potential Energy Diagrams",t:"c"},
+{q:"N₂ + 3H₂ ⇌ 2NH₃: when N₂ is added at equilibrium, the reaction:",o:["Shifts LEFT — produces more N₂ and H₂","Has no change — already at equilibrium","Shifts RIGHT — consumes N₂ and H₂, produces more NH₃","Stops completely"],a:2,e:"LE CHATELIER'S: adding N₂ stresses the LEFT side → system shifts RIGHT to consume excess N₂. This is the Haber process for making ammonia fertilizer! Hydrogen also decreases as it is consumed.",sub:"Le Chatelier's Principle",t:"c"},
+{q:"At DYNAMIC EQUILIBRIUM, concentrations of reactants and products are:",o:["Equal to each other","Zero — reaction stopped","Constantly changing","CONSTANT (both reactions still occurring)"],a:3,e:"DYNAMIC EQUILIBRIUM: concentrations are CONSTANT (not equal!). Both forward and reverse reactions occur at EQUAL RATES. 'Dynamic' = still happening; 'equilibrium' = rates balanced — no net change in concentration.",sub:"Equilibrium",t:"c"},
+{q:"At dynamic equilibrium, forward rate vs reverse rate:",o:["Forward rate = zero","Reverse rate = zero","Both rates constantly change","Forward rate EQUALS reverse rate"],a:3,e:"DYNAMIC EQUILIBRIUM: forward rate = reverse rate. Both reactions happening simultaneously at the same speed → NET change = 0. Concentrations stay constant because rates are perfectly balanced!",sub:"Equilibrium",t:"c"},
+{q:"A gas added to equilibrium shifts to side with FEWER moles because:",o:["Boyle's Law","Charles's Law","Le Chatelier's — system relieves increased pressure","Avogadro's Law"],a:2,e:"LE CHATELIER'S: adding gas increases PRESSURE. System relieves stress by shifting to side with FEWER GAS MOLES (reducing pressure). If both sides have equal gas moles → no shift!",sub:"Le Chatelier's Principle",t:"c"},
+{q:"ACTIVATION ENERGY on a PE diagram represents:",o:["Energy difference between reactants and products","Energy released in the reaction","Minimum energy needed for a collision to cause reaction","Temperature at which reaction occurs"],a:2,e:"ACTIVATION ENERGY (Ea): minimum energy needed for a collision to be EFFECTIVE — to break bonds and start the reaction. Shown as the HEIGHT of the energy 'hill' from reactants to the transition state.",sub:"Potential Energy Diagrams",t:"c"},
+{q:"Adding a CATALYST to an equilibrium system:",o:["Shifts equilibrium toward products","Shifts equilibrium toward reactants","Speeds up reaching equilibrium but doesn't shift position","Changes ΔH of the reaction"],a:2,e:"Catalyst increases BOTH forward AND reverse rates EQUALLY → equilibrium reached FASTER but POSITION unchanged. The ratio of products to reactants stays the same — just gets there quicker!",sub:"Activation Energy & Catalysts",t:"c"},
+{q:"For an effective collision (collision theory), particles must have:",o:["Any collision between particles","Only high pressure","Sufficient energy AND proper orientation","Identical masses"],a:2,e:"COLLISION THEORY: effective collision requires (1) SUFFICIENT ENERGY (≥ activation energy) AND (2) PROPER ORIENTATION (atoms approach in the right geometry). Most collisions fail one or both conditions!",sub:"Reaction Rates",t:"c"},
+{q:"N₂ + 3H₂ ⇌ 2NH₃ at equilibrium: [N₂] increases from 0.5 to 1.0 M. Equilibrium shifts:",o:["Left — away from added N₂","No shift — maintained","Right — to consume excess N₂","Cannot determine without temperature"],a:2,e:"Le Chatelier's: increasing [N₂] stresses LEFT side → shifts RIGHT to consume excess N₂. More NH₃ will form. H₂ also decreases because it is consumed in the forward reaction!",sub:"Le Chatelier's Principle",t:"m"},
+{q:"Forward Ea = 40 kJ/mol; ΔH = −20 kJ/mol. Reverse reaction's Ea?",o:["40 kJ/mol","20 kJ/mol","60 kJ/mol","80 kJ/mol"],a:2,e:"Reverse Ea = Forward Ea − ΔH = 40 − (−20) = 60 kJ/mol. Products are 20 kJ LOWER than reactants, so the reverse reaction must climb 20 kJ MORE from products back up to the transition state.",sub:"Potential Energy Diagrams",t:"m"},
+{q:"Rate = k[A]. If [A] doubles, the rate:",o:["Stays the same","Quadruples","Halves","Doubles"],a:3,e:"Rate = k[A]. If [A] doubles → Rate = k(2[A]) = 2k[A] = 2× original. Rate DOUBLES. (For Rate = k[A]², doubling [A] would quadruple rate.) Linear relationship for first-order kinetics!",sub:"Reaction Rates",t:"m"},
+{q:"For an EXOTHERMIC reaction at equilibrium, increasing temperature shifts equilibrium:",o:["Right — products increase","Left — reactants increase","No change","Equilibrium constant increases"],a:1,e:"EXOTHERMIC: heat is a 'product.' Increasing temperature = adding heat = stress on RIGHT side → shifts LEFT toward reactants. Keq DECREASES with increasing temperature for exothermic reactions.",sub:"Equilibrium",t:"m"},
+{q:"Which has HIGHER activation energy?",o:["Catalyzed reaction","Both identical","Uncatalyzed reaction","Depends only on temperature"],a:2,e:"UNCATALYZED reaction has HIGHER Ea. A catalyst provides an alternative pathway with LOWER activation energy. Both reach the same products — the catalyst just makes it easier/faster to get there!",sub:"Activation Energy & Catalysts",t:"m"},
+{q:"PE diagram: reactants PE = 100 kJ, products PE = 60 kJ. ΔH and type?",o:["ΔH = +100 kJ, endothermic","ΔH = −40 kJ, exothermic","ΔH = +40 kJ, endothermic","ΔH = −60 kJ, exothermic"],a:1,e:"ΔH = PE(products) − PE(reactants) = 60 − 100 = −40 kJ. Negative ΔH = EXOTHERMIC (releases energy). Reactants are HIGHER than products on PE diagram → energy flows out during reaction!",sub:"Potential Energy Diagrams",t:"m"},
+{q:"Which ONLY lowers activation energy (rather than increasing collision frequency)?",o:["Increasing temperature","Increasing concentration","Adding a catalyst","Decreasing particle size"],a:2,e:"CATALYST is the ONLY factor that actually LOWERS ACTIVATION ENERGY. Temperature and concentration increase collision frequency and energy, but don't change Ea. Only a catalyst provides a new lower-energy pathway!",sub:"Activation Energy & Catalysts",t:"c"},
+{q:"For an ENDOTHERMIC reaction at equilibrium, increasing temperature shifts equilibrium:",o:["Left — reactants increase","No change","Right — products increase","Keq decreases"],a:2,e:"ENDOTHERMIC: heat is a 'reactant.' Increasing temp = adding heat = stress on LEFT side → shifts RIGHT to consume heat. Keq INCREASES with temperature for endothermic reactions. Opposite of exothermic!",sub:"Equilibrium",t:"c"},
+{q:"Which would DECREASE the rate of a reaction?",o:["Raising temperature from 25°C to 75°C","Adding a catalyst","Increasing reactant concentration","Cooling the system from 50°C to 10°C"],a:3,e:"DECREASING temperature decreases reaction rate — particles move slower, fewer collisions meet activation energy. Raising temp, adding catalyst, and increasing concentration all INCREASE rate.",sub:"Reaction Rates",t:"c"},
+{q:"Increasing SURFACE AREA of solid reactants increases rate because:",o:["It decreases activation energy","It exposes more particles for collisions","It changes the temperature","It acts like a catalyst"],a:1,e:"More surface area = MORE surface particles exposed = MORE possible collisions per second = FASTER rate. Powdered iron rusts faster than solid iron bar. Crushing/grinding increases surface area and rate!",sub:"Reaction Rates",t:"c"},
+{q:"N₂O₄(g) ⇌ 2NO₂(g) at equilibrium. Volume decreased (pressure increased). Shift?",o:["Right — toward 2 mol NO₂","No shift","Left — toward 1 mol N₂O₄","Equilibrium destroyed"],a:2,e:"Increased pressure → shift toward FEWER MOLES OF GAS. Left side: 1 mol N₂O₄; Right side: 2 mol NO₂. Shifts LEFT. A sealed tube of brown NO₂ lightens when compressed as NO₂ converts to colorless N₂O₄!",sub:"Le Chatelier's Principle",t:"m"},
+{q:"ΔH of reaction equals:",o:["Activation energy of forward reaction","Temperature change","PE(products) − PE(reactants)","PE(reactants) + PE(products)"],a:2,e:"ΔH = PE(products) − PE(reactants). Products LOWER than reactants → ΔH negative → EXOTHERMIC. Products HIGHER → ΔH positive → ENDOTHERMIC. Read directly from the heights on the PE diagram!",sub:"Potential Energy Diagrams",t:"c"},
+{q:"N₂ + 3H₂ ⇌ 2NH₃. Why does hydrogen DECREASE when N₂ is added?",o:["N₂ reacts with container consuming H₂","Le Chatelier's: equilibrium shifts RIGHT, consuming BOTH N₂ AND H₂","Adding N₂ raises temperature decomposing H₂","H₂ always consumed before N₂"],a:1,e:"LE CHATELIER'S: adding N₂ → shifts RIGHT → both N₂ AND H₂ are consumed in the 1:3 ratio to form NH₃. H₂ decreases because it is a CO-REACTANT in the same forward reaction being driven to the right!",sub:"Le Chatelier's Principle",t:"c"},
+{q:"CO(g) + 3H₂(g) ⇌ CH₄(g) + H₂O(g). Removing H₂O (product) shifts equilibrium:",o:["Left — more reactants form","No shift — H₂O was removed","Right — more product forms to replace removed H₂O","Reaction stops"],a:2,e:"Le Chatelier's: removing a PRODUCT stresses the RIGHT side → system shifts RIGHT to replace the removed H₂O. More CH₄ and H₂O form. This technique (continuously removing product) is used industrially to drive reactions to completion!",sub:"Le Chatelier's Principle",t:"c"}
+]}
+,
+{name:"Organic Chemistry",emoji:"🧬",subs:["Hydrocarbon Types","Organic Formulas","Functional Groups","Organic Reactions","Isomers"],qs:[
+{q:"Organic compounds are primarily defined as:",o:["Compounds found ONLY in living organisms","Compounds always soluble in water","Compounds containing carbon (primarily C-H bonds)","Compounds always gaseous at room temperature"],a:2,e:"Organic = primarily CARBON-based (C-H bonds). NOT limited to living things — plastics, gasoline, and many drugs are organic but synthetic. CO₂, CO, and carbonates have carbon but are INORGANIC!",sub:"Hydrocarbon Types",t:"c"},
+{q:"HYDROCARBONS contain only:",o:["Carbon and oxygen","Carbon and hydrogen ONLY","Carbon, hydrogen, and nitrogen","Any combination with carbon"],a:1,e:"HYDROCARBONS: ONLY carbon (C) and hydrogen (H). Methane (CH₄), ethane (C₂H₆), benzene (C₆H₆). If it contains O, N, or halogens → NOT a pure hydrocarbon. Main components of petroleum!",sub:"Hydrocarbon Types",t:"c"},
+{q:"General formula for ALKANES?",o:["CₙH₂ₙ (alkene)","CₙH₂ₙ₋₂ (alkyne)","CₙH₂ₙ₊₁ (incomplete)","CₙH₂ₙ₊₂"],a:3,e:"ALKANES: CₙH₂ₙ₊₂. ALL SINGLE bonds = saturated. Methane CH₄ (n=1), Ethane C₂H₆ (n=2), Propane C₃H₈ (n=3). Alkenes: CₙH₂ₙ. Alkynes: CₙH₂ₙ₋₂.",sub:"Organic Formulas",t:"c"},
+{q:"Electrons shared in ONE TRIPLE BOND (alkyne)?",o:["2","4","8","6"],a:3,e:"Triple bond = 3 pairs of shared electrons = 6 electrons. Single=2e, Double=4e, Triple=6e. Alkynes (like acetylene C₂H₂) are very reactive and used in welding torches!",sub:"Organic Formulas",t:"c"},
+{q:"SATURATED hydrocarbons are:",o:["Alkenes only","Alkynes only","Both alkenes and alkynes","Alkanes only"],a:3,e:"SATURATED = all SINGLE bonds = maximum hydrogen. ONLY ALKANES are saturated. Alkenes (C=C double bond) and alkynes (C≡C triple bond) are UNSATURATED — they can still react with more H. Same concept as saturated fats!",sub:"Hydrocarbon Types",t:"c"},
+{q:"Which functional group makes a compound most water-soluble?",o:["Hydrocarbon chain −CH₂−","Benzene ring","Non-polar carbon backbone","Hydroxyl group −OH"],a:3,e:"−OH (hydroxyl) is POLAR and forms HYDROGEN BONDS with water → alcohols dissolve in water! 'Like dissolves like.' Other polar functional groups: carboxyl (−COOH) and amino (−NH₂).",sub:"Functional Groups",t:"c"},
+{q:"ISOMERS have the same __ but different __:",o:["Structural formula; molecular formula","Atomic number; mass number","Name; elements","Molecular formula; structural arrangement"],a:3,e:"ISOMERS: same MOLECULAR FORMULA (same atoms and counts) but different STRUCTURAL ARRANGEMENT. Example: C₄H₁₀ = butane (straight chain) OR isobutane (branched). Different compounds with different properties!",sub:"Isomers",t:"c"},
+{q:"Which reaction adds atoms ACROSS a double or triple bond producing ONE product?",o:["Substitution","Combustion","Fermentation","Addition"],a:3,e:"ADDITION reactions: atoms (H₂, Cl₂, HCl) added ACROSS C=C or C≡C → ONE product, unsaturation decreases. Hydrogenation of vegetable oils (making margarine) is a classic addition reaction!",sub:"Organic Reactions",t:"c"},
+{q:"Which reaction produces ESTERS?",o:["Addition","Substitution","Fermentation","Esterification (alcohol + carboxylic acid)"],a:3,e:"ESTERIFICATION: alcohol + carboxylic acid → ester + water. Esters are responsible for fruit fragrances and flavors! Saponification (soap-making) uses NaOH with fats (esters). Esters are also found in oils and fats.",sub:"Organic Reactions",t:"c"},
+{q:"The formula of METHANOL (simplest alcohol) is:",o:["CH₄","C₂H₅OH","CH₃OH","C₃H₇OH"],a:2,e:"METHANOL: CH₃OH (also written CH₄O). Simplest alcohol — 1 carbon with an −OH group. TOXIC! ETHANOL: C₂H₅OH = drinking alcohol. Alcohols have −OH functional group and formula CₙH₂ₙ₊₁OH.",sub:"Functional Groups",t:"c"},
+{q:"An ALDEHYDE functional group is:",o:["−OH (hydroxyl)","−COOH (carboxyl)","−CHO (carbonyl at end of chain)","−NH₂ (amino)"],a:2,e:"ALDEHYDE: carbonyl group (C=O) at the END of the carbon chain, written −CHO. Example: formaldehyde (HCHO). KETONE: C=O in the MIDDLE of the chain. Both have C=O but location differs.",sub:"Functional Groups",t:"c"},
+{q:"General formula for ALKENES (one double bond)?",o:["CₙH₂ₙ₊₂","CₙH₂ₙ₋₂","CₙH₂ₙ","CₙH₂ₙ₋₁"],a:2,e:"ALKENES: CₙH₂ₙ (one C=C double bond). Ethene C₂H₄ (n=2), Propene C₃H₆ (n=3). Alkene has 2 fewer H than alkane (CₙH₂ₙ₊₂) because one double bond uses 2 H positions.",sub:"Organic Formulas",t:"c"},
+{q:"CO₂ is classified as:",o:["Organic — it contains carbon","Inorganic — no C-H bonds","Organic — produced by combustion","Neither organic nor inorganic"],a:1,e:"CO₂ is INORGANIC despite containing carbon. Organic compounds require C-H bonds — CO₂ has only C-O bonds. Other inorganic carbon compounds: CO, carbonates (CaCO₃), diamond (pure C).",sub:"Hydrocarbon Types",t:"c"},
+{q:"COMPLETE COMBUSTION of hydrocarbons produces:",o:["CO and H₂O","C and H₂","CO₂ and H₂O","CO₂ and H₂"],a:2,e:"Complete combustion (excess O₂): hydrocarbon + O₂ → CO₂ + H₂O. Example: CH₄ + 2O₂ → CO₂ + 2H₂O. INCOMPLETE combustion (insufficient O₂) → CO (toxic!) + soot (C).",sub:"Organic Reactions",t:"c"},
+{q:"How many carbon atoms in HEXANE?",o:["4","5","7","6"],a:3,e:"HEX = 6 carbons. Hexane formula: C₆H₁₄. Memorize: meth=1, eth=2, prop=3, but=4, pent=5, HEX=6, hept=7, oct=8. These prefixes apply to all organic compound names!",sub:"Organic Formulas",t:"m"},
+{q:"Molecular formula of BUTENE (alkene, 4 carbons)?",o:["C₄H₁₀","C₄H₆","C₄H₈","C₄H₄"],a:2,e:"ALKENE: CₙH₂ₙ. Butene: n=4 → C₄H₈. Butene has ONE C=C double bond. Compare: Butane (alkane) = C₄H₁₀; Butyne (alkyne) = C₄H₆. Each level of unsaturation removes 2 H atoms!",sub:"Organic Formulas",t:"m"},
+{q:"Molecular formula of PENTANE (n=5, alkane)?",o:["C₅H₁₀","C₅H₈","C₅H₁₂","C₅H₁₄"],a:2,e:"ALKANE: CₙH₂ₙ₊₂. Pentane: n=5 → C₅H₁₂. Five carbons, all single bonds, fully saturated. Used as a solvent and fuel component.",sub:"Organic Formulas",t:"m"},
+{q:"Molecular formula of PROPYNE (alkyne, 3 carbons)?",o:["C₃H₈","C₃H₆","C₃H₄","C₃H₂"],a:2,e:"ALKYNE: CₙH₂ₙ₋₂. Propyne: n=3 → C₃H₄. Has ONE C≡C triple bond. Compare: Propane (alkane) = C₃H₈; Propene (alkene) = C₃H₆; Propyne (alkyne) = C₃H₄.",sub:"Organic Formulas",t:"m"},
+{q:"How many hydrogen atoms in PROPANE (C₃H₈)?",o:["3","6","10","8"],a:3,e:"Propane = C₃H₈ → 8 hydrogen atoms. From CₙH₂ₙ₊₂ where n=3: 2(3)+2=8. Used in gas grills and portable heaters!",sub:"Organic Formulas",t:"m"},
+{q:"Molar mass of ETHANOL (C₂H₅OH)? (C=12, H=1, O=16)",o:["30 g/mol","46 g/mol","60 g/mol","44 g/mol"],a:1,e:"C₂H₅OH = C₂H₆O: 2(12) + 6(1) + 16 = 24 + 6 + 16 = 46 g/mol. A standard drink contains ~14g ethanol ≈ 0.30 mol.",sub:"Organic Formulas",t:"m"},
+{q:"C₂H₅OH and CH₃OCH₃ both have formula C₂H₆O. They are:",o:["Isotopes","Isomers","Ionic compounds","Identical compounds"],a:1,e:"ISOMERS: same molecular formula (C₂H₆O) but different structural arrangements. Ethanol has −OH group; dimethyl ether has −O− in the middle. Completely different properties!",sub:"Isomers",t:"c"},
+{q:"Which organic reaction forms ONLY ONE PRODUCT from an unsaturated compound?",o:["Substitution — replaces one H (two products)","Esterification — alcohol + acid → ester + water (two products)","Saponification — three products","Addition — atoms added across double bond → ONE product"],a:3,e:"ADDITION always gives ONE product from an unsaturated compound. Compare: SUBSTITUTION replaces one group (two products: new compound + leaving group). Addition ALWAYS: unsaturated + atoms → ONE saturated compound.",sub:"Organic Reactions",t:"c"},
+{q:"A KETONE has its carbonyl group (C=O):",o:["At the END of the chain (like aldehyde)","At the END with an H attached","In the MIDDLE of the carbon chain","Always on carbon #1"],a:2,e:"KETONE: C=O in the MIDDLE of the chain. Example: propanone/acetone (CH₃COCH₃) — common nail polish remover! ALDEHYDE: C=O at the END. Both have C=O but position is the key difference.",sub:"Functional Groups",t:"c"},
+{q:"In a SUBSTITUTION reaction, what happens?",o:["Atoms are added across a double bond","Two compounds combine to form one","One atom or group REPLACES another in a compound","A molecule breaks into two smaller molecules"],a:2,e:"SUBSTITUTION: one atom or functional group REPLACES another. Example: CH₄ + Cl₂ → CH₃Cl + HCl (a chlorine substitutes for a hydrogen). Unlike addition, substitution occurs on SATURATED compounds!",sub:"Organic Reactions",t:"c"}
+]}
+,
+{name:"Acids & Bases",emoji:"🧫",subs:["Acid/Base Definitions","pH Scale","Indicators","Neutralization","Concentration Calculations"],qs:[
+{q:"What property classifies a substance as an ELECTROLYTE?",o:["Conducts heat","Changes color with indicators","Produces ions in solution — conducts electricity","Dissolves in any solvent"],a:2,e:"ELECTROLYTES produce IONS in water → solution conducts electricity. Strong electrolytes (strong acids, bases, soluble salts) ionize completely. Weak electrolytes partially ionize. Non-electrolytes (sugar) produce no ions.",sub:"Acid/Base Definitions",t:"c"},
+{q:"According to Arrhenius, which ion does an ACID ALWAYS produce in water?",o:["OH⁻","Cl⁻","Na⁺","H⁺ (hydronium H₃O⁺)"],a:3,e:"Arrhenius ACID: produces H⁺ (hydronium H₃O⁺) in water. EVERY acid releases H⁺! HCl → H⁺ + Cl⁻. H₂SO₄ → 2H⁺ + SO₄²⁻. The more H⁺ produced, the stronger the acid!",sub:"Acid/Base Definitions",t:"c"},
+{q:"According to Arrhenius, which is the ONLY negative ion when a BASE dissolves in water?",o:["Cl⁻","SO₄²⁻","CO₃²⁻","OH⁻"],a:3,e:"Arrhenius BASE: produces OH⁻ (hydroxide) in water. NaOH → Na⁺ + OH⁻. Ca(OH)₂ → Ca²⁺ + 2OH⁻. When H⁺ (acid) meets OH⁻ (base): H⁺ + OH⁻ → H₂O. Neutralization!",sub:"Acid/Base Definitions",t:"c"},
+{q:"Which equation represents a NEUTRALIZATION reaction?",o:["2H₂ + O₂ → 2H₂O","Na + Cl₂ → NaCl","CaCO₃ → CaO + CO₂","HCl + NaOH → NaCl + H₂O"],a:3,e:"NEUTRALIZATION: acid + base → salt + water. HCl (acid) + NaOH (base) → NaCl (salt) + H₂O. H⁺ + OH⁻ → H₂O. The result has pH closer to 7. Antacids neutralize excess stomach acid!",sub:"Neutralization",t:"c"},
+{q:"Which pH values indicate an ACIDIC solution?",o:["pH 7–14","pH exactly 7","pH greater than 7","pH less than 7"],a:3,e:"pH scale: 0–14. pH < 7 = ACIDIC. pH = 7 = NEUTRAL. pH > 7 = BASIC. Strong acids: pH near 0. Strong bases: pH near 14. LOGARITHMIC — each unit = 10× difference in H⁺ concentration!",sub:"pH Scale",t:"c"},
+{q:"pH decreases from 7 to 5. What happens to H⁺ concentration?",o:["Increases by factor of 2","Decreases by factor of 100","Decreases by factor of 2","Increases by factor of 100"],a:3,e:"pH is LOGARITHMIC. Change of 1 pH unit = 10× change in H⁺. Change of 2 units (7→5) = 10² = 100× MORE H⁺. [H⁺] went from 10⁻⁷ to 10⁻⁵ M — 100 times more hydronium ions!",sub:"pH Scale",t:"c"},
+{q:"PHENOLPHTHALEIN indicator with NaOH (a base) turns:",o:["Red","Yellow","Colorless","Pink/magenta"],a:3,e:"PHENOLPHTHALEIN: colorless in acid (pH < 8), pink/magenta in base (pH > 10). NaOH = strong base → PINK. At titration endpoint, the first permanent pink color appears. Litmus: red in acid, blue in base!",sub:"Indicators",t:"c"},
+{q:"What process determines the concentration of an unknown acid or base?",o:["Distillation","Filtration","Chromatography","Titration"],a:3,e:"TITRATION: standard solution of known concentration is added slowly to unknown until indicator changes color (endpoint). Using volume and concentration of standard: M₁V₁ = M₂V₂. Used in labs, food chemistry, and medicine!",sub:"Concentration Calculations",t:"c"},
+{q:"According to the Bronsted-Lowry definition, an ACID is:",o:["A substance that produces OH⁻ in water","A substance that produces H⁺ in water","A proton (H⁺) DONOR","A proton (H⁺) ACCEPTOR"],a:2,e:"BRONSTED-LOWRY: acid = PROTON DONOR (gives H⁺), base = PROTON ACCEPTOR (takes H⁺). More general than Arrhenius — doesn't require water. NH₃ (no OH⁻) can still be a Bronsted-Lowry base!",sub:"Acid/Base Definitions",t:"c"},
+{q:"LITMUS paper turns what color in an ACID?",o:["Blue","Yellow","Red","Green"],a:2,e:"LITMUS: RED in acid (pH < 7), BLUE in base (pH > 7). Memory: Red = acid. Blue = base. Litmus can also be blue litmus paper (turns red in acid) or red litmus paper (turns blue in base). Universal indicator shows a range of colors!",sub:"Indicators",t:"c"},
+{q:"Which is a STRONG ACID (fully ionizes in water)?",o:["Acetic acid (CH₃COOH)","Carbonic acid (H₂CO₃)","Hydrochloric acid (HCl)","Citric acid"],a:2,e:"HCl is a STRONG ACID — ionizes 100% in water: HCl → H⁺ + Cl⁻. Other strong acids: H₂SO₄, HNO₃, HBr, HI, HClO₄. WEAK acids (acetic, carbonic, citric) only partially ionize — equilibrium arrows (⇌)!",sub:"Acid/Base Definitions",t:"c"},
+{q:"[H⁺] = 10⁻³ M (0.001 M). What is the pH?",o:["0.001","7","-3","3"],a:3,e:"pH = −log[H⁺] = −log(10⁻³) = −(−3) = 3. Simple: pH = the exponent with sign flipped. [H⁺] = 10⁻³ → pH = 3 (acidic, since 3 < 7).",sub:"pH Scale",t:"m"},
+{q:"[H⁺] = 10⁻¹¹ M. What is the pH?",o:["11 (basic)","−11","1","3"],a:0,e:"pH = −log(10⁻¹¹) = 11. Since 11 > 7 → BASIC/ALKALINE. At pH 11: [OH⁻] = 10⁻³ M (much more OH⁻ than H⁺). Example: household ammonia has pH around 11.",sub:"pH Scale",t:"m"},
+{q:"50 mL of 1.0 M HCl is neutralized by NaOH (1.0 M). Volume of NaOH needed?",o:["100 mL","25 mL","50 mL","75 mL"],a:2,e:"M₁V₁ = M₂V₂: (1.0)(50) = (1.0)(V₂). V₂ = 50 mL. Equal moles of HCl and NaOH neutralize each other (1:1 ratio). Moles HCl = 1.0 × 0.050 = 0.050 mol = moles NaOH needed.",sub:"Concentration Calculations",t:"m"},
+{q:"If pH = 4, what is [H⁺]?",o:["4 M","10⁻¹⁰ M","10⁻⁴ M","10⁻⁷ M"],a:2,e:"[H⁺] = 10⁻ᵖᴴ = 10⁻⁴ M. Simple rule: [H⁺] = 10^(−pH). pH 4 = acidic. [H⁺] = 0.0001 M = 10⁻⁴ M. This is 1,000 times more H⁺ than neutral water (10⁻⁷ M)!",sub:"pH Scale",t:"m"},
+{q:"If pH = 9, what is the pOH? (pH + pOH = 14)",o:["9","14","23","5"],a:3,e:"pOH = 14 − pH = 14 − 9 = 5. pH + pOH = 14 always (at 25°C). pH 9 = basic. pOH 5 means [OH⁻] = 10⁻⁵ M. More OH⁻ than H⁺ → basic solution!",sub:"pH Scale",t:"m"},
+{q:"25 mL of 2.0 M NaOH mixed with 25 mL of 2.0 M HCl. Resulting pH?",o:["Above 7 (basic)","Below 7 (acidic)","Cannot be determined","7 (neutral)"],a:3,e:"Moles HCl = 2.0 × 0.025 = 0.050 mol. Moles NaOH = 2.0 × 0.025 = 0.050 mol. EQUAL moles → complete neutralization → NaCl + H₂O → pH = 7. Equal concentrations and volumes of strong acid/base always give pH 7!",sub:"Neutralization",t:"m"},
+{q:"What color does BROMTHYMOL BLUE turn in an ACID?",o:["Blue","Purple","Yellow","Green"],a:2,e:"BROMTHYMOL BLUE: YELLOW in acid (pH < 6), GREEN near neutral, BLUE in base (pH > 7.6). Different indicators change at different pH ranges. Choose indicator based on expected endpoint pH!",sub:"Indicators",t:"c"},
+{q:"What is NEUTRALIZATION in terms of ions?",o:["Metal + nonmetal → ionic compound","Cation + anion → precipitate","H⁺ + OH⁻ → H₂O (water)","Acid ionizes in water"],a:2,e:"Net ionic equation of neutralization: H⁺ + OH⁻ → H₂O. The H⁺ from the acid combines with the OH⁻ from the base to form WATER. The remaining ions (spectator ions) form the salt: Na⁺ + Cl⁻ = NaCl.",sub:"Neutralization",t:"c"},
+{q:"A solution with pH = 7 at 25°C contains [H⁺] of:",o:["0 M (pure water has no H⁺)","10⁻¹⁴ M","1 M","10⁻⁷ M"],a:3,e:"At NEUTRAL pH = 7: [H⁺] = [OH⁻] = 10⁻⁷ M. Pure water self-ionizes: H₂O ⇌ H⁺ + OH⁻. Even pure water has H⁺ ions! Kw = [H⁺][OH⁻] = 10⁻¹⁴ at 25°C.",sub:"pH Scale",t:"c"},
+{q:"The EQUIVALENCE POINT in a titration is when:",o:["The indicator changes color","Exactly equal moles of acid and base have reacted","pH equals 7","Maximum volume of titrant is added"],a:1,e:"EQUIVALENCE POINT: moles of acid = moles of base (exactly neutralized). For strong acid/base: equivalence point is at pH 7. For weak acid/strong base: pH > 7 at equivalence point. The indicator endpoint should be CLOSE to the equivalence point.",sub:"Concentration Calculations",t:"c"},
+{q:"If pH decreases by 3 units (e.g., pH 7 → pH 4), [H⁺] changes by factor of:",o:["3","30","100","1,000"],a:3,e:"pH is LOGARITHMIC base 10. Change of 3 pH units = 10³ = 1,000× change in [H⁺]. pH 7: [H⁺]=10⁻⁷. pH 4: [H⁺]=10⁻⁴. Ratio: 10⁻⁴/10⁻⁷ = 10³ = 1,000 times more H⁺!",sub:"pH Scale",t:"m"},
+{q:"Which acid-base indicator is RED in acid and BLUE in base?",o:["Phenolphthalein","Bromthymol blue","Universal indicator","Litmus"],a:3,e:"LITMUS: red in acid, blue in base (or purple at neutral). Phenolphthalein: colorless in acid, pink in base. Bromthymol blue: yellow in acid, blue in base. Each indicator has a specific pH transition range.",sub:"Indicators",t:"c"},
+{q:"40.0 mL of 0.50 M H₂SO₄ is neutralized by 1.0 M NaOH. Volume of NaOH?",o:["20 mL","40 mL","80 mL","10 mL"],a:1,e:"H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O (ratio 1:2). Moles H₂SO₄ = 0.50 × 0.040 = 0.020 mol. Moles NaOH needed = 2 × 0.020 = 0.040 mol. V = 0.040/1.0 = 0.040 L = 40 mL. Watch the stoichiometry — H₂SO₄ is diprotic!",sub:"Concentration Calculations",t:"m"}
+]}
+,
+{name:"Redox",emoji:"⚡",subs:["Oxidation Numbers","Oxidation vs Reduction","Electrochemical Cells","Voltaic vs Electrolytic","Half-Reactions","Oxidizing & Reducing Agents"],qs:[
+{q:"How do you determine if a reaction is REDOX?",o:["A gas is produced","A precipitate forms","Temperature changes","Oxidation numbers of elements change"],a:3,e:"REDOX reactions involve ELECTRON TRANSFER → OXIDATION NUMBERS change. If any element's oxidation number changes before vs after → REDOX! If numbers stay same → not redox (like precipitation or acid-base).",sub:"Oxidation Numbers",t:"c"},
+{q:"When OXIDIZED, oxidation numbers:",o:["Decrease (more negative)","Stay the same","Increase (more positive)","The element gains electrons and charge decreases"],a:2,e:"OIL: Oxidation Is Loss (of electrons). Losing electrons → fewer negative charges → HIGHER (more positive) oxidation number. Fe → Fe²⁺: oxidation number went from 0 to +2 (INCREASED). OIL RIG!",sub:"Oxidation Numbers",t:"c"},
+{q:"When REDUCED (in terms of electrons), an element:",o:["Loses electrons — becomes more positive","Loses protons from nucleus","Neither gains nor loses electrons","Gains electrons — becomes more negative"],a:3,e:"RIG: Reduction Is Gain (of electrons). Gaining electrons → more negative charge → LOWER (more negative) oxidation number. Cu²⁺ + 2e⁻ → Cu⁰: oxidation number went from +2 to 0 (DECREASED).",sub:"Oxidation vs Reduction",t:"c"},
+{q:"Which subatomic particles are TRANSFERRED in a redox reaction?",o:["Protons","Neutrons","Both protons and electrons","Electrons ONLY"],a:3,e:"REDOX = electron transfer! Only ELECTRONS move between species. Proton transfer = acid-base (not redox). Neutrons never transfer in chemical reactions. ELECTRONS are the currency of redox!",sub:"Oxidation vs Reduction",t:"c"},
+{q:"OXIDATION occurs at which electrode?",o:["Cathode — reduction here","Both equally","Neither — in solution","Anode"],a:3,e:"Mnemonic: OA/RC — Oxidation at Anode, Reduction at Cathode. At ANODE: species LOSES electrons (oxidized). Electrons travel through external circuit to cathode. ALWAYS: anode = oxidation, cathode = reduction!",sub:"Electrochemical Cells",t:"c"},
+{q:"Strongest OXIDIZING AGENT (best at being reduced)?",o:["Lithium (Li)","Gold (Au)","Zinc (Zn)","Fluorine (F)"],a:3,e:"FLUORINE is the strongest oxidizing agent — highest electronegativity = greatest tendency to GAIN electrons (be reduced). Strongest oxidizing agents are easiest to reduce. F can oxidize almost anything!",sub:"Oxidizing & Reducing Agents",t:"c"},
+{q:"In a VOLTAIC cell, electrons flow through the external wire from:",o:["Cathode to anode","Through salt bridge only","Equally in both directions","Anode to cathode"],a:3,e:"Electrons released at ANODE (oxidation) → flow through external wire → arrive at CATHODE (reduction). Anode → wire → Cathode. This electron flow IS the electrical current powering the device!",sub:"Electrochemical Cells",t:"c"},
+{q:"Purpose of the SALT BRIDGE?",o:["Allows electrons to flow directly between half-cells","Stores excess charge","Physically separates electrodes","Maintains electrical neutrality by allowing ion flow"],a:3,e:"Salt bridge allows ION FLOW between half-cells to maintain ELECTRICAL NEUTRALITY. As reaction proceeds, anode side becomes positive (losing electrons), cathode becomes negative (gaining). Salt bridge moves ions to balance — without it, the cell stops!",sub:"Electrochemical Cells",t:"c"},
+{q:"A VOLTAIC cell is correctly described as:",o:["Requires electrical energy for non-spontaneous reaction","Converts electrical to chemical energy","Requires continuous energy input","Uses SPONTANEOUS redox to produce electrical energy"],a:3,e:"VOLTAIC (galvanic) cell: SPONTANEOUS redox reaction → ELECTRICAL ENERGY. The reaction 'wants' to happen — releases energy. Examples: batteries, fuel cells. Compare ELECTROLYTIC: uses electricity to drive NON-SPONTANEOUS reaction!",sub:"Voltaic vs Electrolytic",t:"c"},
+{q:"Which electrode GAINS MASS as an electrochemical cell operates?",o:["Anode — oxidizes and dissolves","Salt bridge","Both equally","Cathode — metal ions deposit as reduced"],a:3,e:"CATHODE gains mass! REDUCTION occurs there: metal cations from solution gain electrons → deposit as solid metal. ANODE loses mass — it oxidizes and dissolves. Example: in copper electrolysis, copper anode dissolves as Cu²⁺; cathode gains solid copper!",sub:"Electrochemical Cells",t:"c"},
+{q:"VOLTAIC vs ELECTROLYTIC cell — key difference?",o:["Voltaic uses external electricity; electrolytic produces electricity","Both types require external power","Both produce electrical energy","Voltaic: spontaneous → electricity. Electrolytic: electricity → non-spontaneous"],a:3,e:"VOLTAIC: spontaneous reaction → electrical energy (batteries). ELECTROLYTIC: electrical energy drives a NON-SPONTANEOUS reaction (electroplating, electrolysis, charging a battery). One PRODUCES electricity; the other CONSUMES it!",sub:"Voltaic vs Electrolytic",t:"c"},
+{q:"Purpose of the BATTERY in an electrolytic cell?",o:["Measure voltage","Serve as electrode","Provide ions for solution","Provide electrical energy to drive a non-spontaneous redox reaction"],a:3,e:"In an ELECTROLYTIC cell, the reaction is NON-SPONTANEOUS — needs an energy INPUT. The BATTERY provides this electrical energy. Examples: electroplating metals, electrolysis of water, charging rechargeable batteries.",sub:"Voltaic vs Electrolytic",t:"c"},
+{q:"A REDUCING AGENT is a substance that:",o:["Accepts electrons and is reduced","Accepts protons from acids","Donates electrons and is itself oxidized","Oxidizes other substances by taking their electrons"],a:2,e:"REDUCING AGENT: donates electrons to another substance → causes it to be reduced. The reducing agent itself is OXIDIZED (loses electrons). Example: Zn in Zn + Cu²⁺ → Zn²⁺ + Cu. Zn is the reducing agent (it oxidizes from 0 to +2)!",sub:"Oxidizing & Reducing Agents",t:"c"},
+{q:"At the CATHODE of a voltaic cell, what process occurs?",o:["Oxidation — electrons lost","Both oxidation and reduction simultaneously","No reaction — just a conductor","Reduction — electrons gained from external circuit"],a:3,e:"CATHODE = REDUCTION. Electrons arrive from the external circuit (from the anode) → reduce metal cations in solution → deposit as solid metal. RC: Reduction at Cathode. The cathode gains mass over time!",sub:"Electrochemical Cells",t:"c"},
+{q:"Which type of cell is used in ELECTROPLATING?",o:["Voltaic cell (spontaneous)","Galvanic cell","Fuel cell","Electrolytic cell (non-spontaneous, needs external power)"],a:3,e:"ELECTROPLATING uses an ELECTROLYTIC CELL. External power forces a non-spontaneous reaction: metal from the anode dissolves into solution and plates onto the cathode (the object being plated). Chrome plating, gold jewelry, and nickel coins use this!",sub:"Voltaic vs Electrolytic",t:"c"},
+{q:"OIL RIG stands for:",o:["Only In Liquid, Reactions Involving Gas","Oxidation Is Loss; Reduction Is Gain","Oxygen Is Last, Reduction Is Greatest","Organic Ion Laws; Redox Ion Guide"],a:1,e:"OIL RIG: Oxidation Is Loss (of electrons), Reduction Is Gain (of electrons). The most important mnemonic in electrochemistry! OIL: oxidation = electron loss = oxidation number INCREASES. RIG: reduction = electron gain = oxidation number DECREASES.",sub:"Oxidation vs Reduction",t:"c"},
+{q:"In Fe → Fe³⁺ + 3e⁻, what is the change in oxidation number?",o:["0 to −3 (decreased by 3)","0 to +3 (increased by 3)","No change","+3 to 0 (decreased by 3)"],a:1,e:"Fe is oxidized: loses 3 electrons → becomes Fe³⁺. Oxidation number goes from 0 (pure element) to +3. OIL: Oxidation Is Loss → oxidation number INCREASES. Went from 0 → +3 (increased by 3).",sub:"Oxidation Numbers",t:"m"},
+{q:"Oxidation number of Cl in HCl?",o:["0","+1","−2","−1"],a:3,e:"In HCl: H is +1, and molecule is neutral (total = 0). So Cl must be −1. General rule: H is +1 in compounds; Cl in binary compounds with H is −1. In HCl: (+1) + Cl = 0 → Cl = −1.",sub:"Oxidation Numbers",t:"m"},
+{q:"Balance: Zn → Zn²⁺ + __e⁻. How many electrons?",o:["1","3","4","2"],a:3,e:"Zn goes from 0 to +2: gained a +2 charge by LOSING 2 electrons. Zn → Zn²⁺ + 2e⁻. The number of electrons lost = change in oxidation number = 2. This is an OXIDATION half-reaction!",sub:"Half-Reactions",t:"m"},
+{q:"Oxidation state of Mn in KMnO₄? (K=+1, O=−2)",o:["−7","+5","0","+7"],a:3,e:"Sum of oxidation numbers = 0 for neutral compound. K(+1) + Mn + 4O(−2) = 0. (+1) + Mn + (−8) = 0. Mn = +7. KMnO₄ is a powerful oxidizing agent — Mn drops from +7 to lower states as it oxidizes other substances!",sub:"Oxidation Numbers",t:"m"},
+{q:"In Cu²⁺ + 2e⁻ → Cu, is copper oxidized or reduced? Electrons transferred?",o:["Oxidized; 1 electron","Reduced; 2 electrons","Oxidized; 2 electrons","Reduced; 1 electron"],a:1,e:"RIG: Reduction Is Gain. Cu²⁺ GAINS 2 electrons → becomes Cu⁰. REDUCED! Oxidation number: +2 → 0 (DECREASED). This is a REDUCTION half-reaction. 2 electrons are transferred. This occurs at the CATHODE!",sub:"Half-Reactions",t:"m"},
+{q:"Oxidation number of Al in AlCl₃? (Cl = −1)",o:["−3","0","−1","+3"],a:3,e:"AlCl₃: Al + 3(Cl) = 0. Al + 3(−1) = 0. Al − 3 = 0. Al = +3. Aluminum is +3 in most compounds. In pure aluminum metal (Al(s)), oxidation number = 0. Going from Al(s) to Al³⁺ is OXIDATION.",sub:"Oxidation Numbers",t:"m"},
+{q:"What happens to ALL SUBATOMIC PARTICLES during a redox reaction?",o:["All three particles (p, n, e) are transferred","Only protons and electrons transfer","The nucleus splits apart","Only ELECTRONS transfer; protons and neutrons remain in their nuclei"],a:3,e:"In chemical reactions (including redox): only ELECTRONS transfer. PROTONS and NEUTRONS remain locked in their atomic nuclei. The atom's identity (proton count) never changes in a chemical reaction — only nuclear reactions change proton count!",sub:"Oxidation vs Reduction",t:"c"},
+{q:"In 2Al + 3Cl₂ → 2AlCl₃, which species is the OXIDIZING AGENT?",o:["Al (aluminum)","AlCl₃ (product)","Both Al and Cl₂","Cl₂ (chlorine gas)"],a:3,e:"OXIDIZING AGENT: the substance that GAINS electrons (is itself reduced). In this reaction: Cl₂ goes from 0 to −1 (gains electrons) → Cl₂ is REDUCED → Cl₂ is the OXIDIZING AGENT. Al goes from 0 to +3 (loses electrons) → Al is OXIDIZED → Al is the reducing agent!",sub:"Oxidizing & Reducing Agents",t:"c"}
+]}
+,
+{name:"Nuclear Chemistry",emoji:"☢️",subs:["Types of Radiation","Half-Life","Nuclear Equations","Radioactive Applications","Fission vs Fusion"],qs:[
+{q:"Why do some isotopes release radioactive particles?",o:["Too many electrons in outer shells","Unstable nucleus — imbalanced neutron-to-proton ratio","Too few valence electrons","Electron configuration in excited state"],a:1,e:"Radioactive nuclei are UNSTABLE — unfavorable proton-to-neutron ratio OR nucleus too large. To become more stable, nucleus releases particles or energy. The 'belt of stability' defines which nuclei are stable!",sub:"Radioactive Applications",t:"c"},
+{q:"Which nuclear emission has the GREATEST MASS?",o:["Beta particle (β⁻) — electron mass only","Gamma ray (γ) — pure energy, no mass","Positron (β⁺) — same mass as electron","Alpha particle (α) — 2 protons + 2 neutrons"],a:3,e:"ALPHA PARTICLE: 2 protons + 2 neutrons = mass number 4 (like ⁴He nucleus). MOST MASSIVE. Beta particles ≈ 1/1836 amu. Gamma rays have ZERO mass (electromagnetic radiation). Alpha > Beta > Gamma in mass!",sub:"Types of Radiation",t:"c"},
+{q:"Which emission is NOT deflected by a magnetic or electric field?",o:["Alpha particles (+2 charge, deflected)","Beta particles (−1 charge, deflected)","Positrons (+1 charge, deflected)","Gamma rays (no charge, not deflected)"],a:3,e:"GAMMA RAYS (γ) are high-energy electromagnetic photons with NO charge → not deflected by fields. Alpha (+2 charge) and beta (−1 charge) particles ARE deflected. No charge = no electromagnetic interaction!",sub:"Types of Radiation",t:"c"},
+{q:"Which emission has the GREATEST PENETRATING POWER?",o:["Alpha — stopped by paper","Beta — stopped by thin aluminum","Positron — same as beta","Gamma — requires thick lead or concrete"],a:3,e:"Penetrating power: GAMMA > BETA > ALPHA. Alpha (large, +2 charge): stopped by PAPER or skin. Beta: stopped by thin ALUMINUM. Gamma (no charge, no mass): requires thick LEAD or CONCRETE. More penetrating = less ionizing per cm!",sub:"Types of Radiation",t:"c"},
+{q:"Where do you look up decay mode of a specific radioisotope?",o:["Table E — Polyatomic Ions","Table F — Solubility","Table S — Properties","Table N — Selected Radioisotopes"],a:3,e:"NYS Table N lists radioisotopes with: nuclide notation, half-life, decay mode (alpha/beta/gamma/positron), and applications. This table is PROVIDED on the Regents exam — know how to read it!",sub:"Radioactive Applications",t:"c"},
+{q:"80g sample with half-life of 10 years. Amount remaining after 30 years?",o:["40g (1 half-life)","20g (2 half-lives)","5g (4 half-lives)","10g (3 half-lives)"],a:3,e:"30 years ÷ 10 years/half-life = 3 half-lives. 80g → 40g → 20g → 10g. Formula: remaining = initial × (½)ⁿ where n = number of half-lives. 80 × (½)³ = 80 × (1/8) = 10g ✓",sub:"Half-Life",t:"m"},
+{q:"Longest half-life on Table N (most stable)?",o:["C-14 (5,730 years)","I-131 (8.07 days)","Rn-222 (3.82 days)","U-238 (4.51 × 10⁹ years)"],a:3,e:"U-238: half-life = 4.51 BILLION years → slowest decay → most stable. I-131 and Rn-222 have half-lives of days — very unstable. Longer half-life = slower decay = more stable nucleus.",sub:"Half-Life",t:"c"},
+{q:"Which radioisotope treats THYROID conditions?",o:["C-14 — radiocarbon dating","Co-60 — general cancer therapy","U-238 — geological dating","I-131 — thyroid treatment"],a:3,e:"I-131 (Iodine-131) treats thyroid cancer/hyperthyroidism — thyroid naturally absorbs iodine, concentrating the radiation there. C-14: carbon dating organic material. U-238: dating ancient rocks. Co-60: other cancer radiotherapy.",sub:"Radioactive Applications",t:"c"},
+{q:"NATURAL vs ARTIFICIAL transmutation — key difference?",o:["Natural needs particle accelerators; artificial doesn't","Natural is faster","Natural: only alpha particles","Natural: SPONTANEOUS decay. Artificial: bombarding stable nucleus with a particle"],a:3,e:"NATURAL: unstable nucleus spontaneously decays on its own. ARTIFICIAL: scientists bombard stable nuclei with particles (neutrons, protons, alpha) using particle accelerators → forces a nuclear change. Used to make transuranium elements and medical radioisotopes!",sub:"Nuclear Equations",t:"c"},
+{q:"FISSION vs FUSION — atom size?",o:["Fission joins small atoms; fusion splits large","Both split atoms of different sizes","Both join atoms at different scales","Fission SPLITS LARGE atoms → smaller; fusion JOINS SMALL atoms → larger"],a:3,e:"FISSION: large, heavy nuclei (U-235, Pu-239) SPLIT into smaller fragments + neutrons + energy. Used in nuclear power plants. FUSION: small nuclei (H-2, H-3) MERGE to form larger nucleus + energy. Powers the SUN!",sub:"Fission vs Fusion",t:"c"},
+{q:"FISSION vs FUSION — energy needed to initiate?",o:["Fission needs more energy; fusion needs less","Both need same energy","Neither needs energy","Fusion needs MUCH MORE energy (millions of degrees); fission needs less"],a:3,e:"FUSION needs EXTREME temperatures (millions of °C!) to overcome the electrostatic repulsion between positive nuclei. FISSION can be started by relatively low-energy neutrons at room temperature. This is why fusion power plants are still experimental!",sub:"Fission vs Fusion",t:"c"},
+{q:"One BENEFIT and one RISK of radioactive elements?",o:["Benefit: zero waste; Risk: none identified","Benefit: clean energy always; Risk: too expensive","Benefit: lasts forever; Risk: hard to transport","Benefit: treats cancer (radiation therapy); Risk: radiation can damage healthy cells and cause cancer"],a:3,e:"BENEFITS: medical imaging (PET, X-ray), cancer radiation therapy, food sterilization, nuclear power, smoke detectors. RISKS: DNA damage, cancer risk, radiation sickness, nuclear waste storage challenges, meltdowns, weapons proliferation.",sub:"Radioactive Applications",t:"c"},
+{q:"ALPHA particles are written as:",o:["⁰₋₁e","⁰₀γ","¹₁H","⁴₂He"],a:3,e:"ALPHA particle = ⁴₂He (helium nucleus). Mass number = 4, atomic number = 2 (2 protons + 2 neutrons). BETA particle = ⁰₋₁e (electron). GAMMA = ⁰₀γ (photon). Know the symbols for the Regents!",sub:"Types of Radiation",t:"c"},
+{q:"Which radiation type has the LEAST penetrating power?",o:["Gamma — passes through lead","Beta — passes through skin","Alpha — stopped by paper or skin","Positron — same as beta"],a:2,e:"ALPHA particles are LEAST penetrating — stopped by a sheet of paper or the outer layer of skin! Despite low penetration, alpha particles are MOST IONIZING (dense ionization along their short path). Dangerous if inhaled or ingested!",sub:"Types of Radiation",t:"c"},
+{q:"A 160g sample decays with half-life of 5 years. Amount remaining after 20 years?",o:["80g","20g","40g","10g"],a:3,e:"20 years ÷ 5 years/half-life = 4 half-lives. 160 → 80 → 40 → 20 → 10g. Formula: 160 × (½)⁴ = 160/16 = 10g remaining after 20 years.",sub:"Half-Life",t:"m"},
+{q:"A sample is 25% of its original amount. How many half-lives have passed?",o:["1 half-life (50%)","3 half-lives (12.5%)","4 half-lives (6.25%)","2 half-lives (25%)"],a:3,e:"After n half-lives, remaining fraction = (½)ⁿ. (½)² = ¼ = 25%. So 2 half-lives have passed. Check: Start → ½ → ¼. 100% → 50% → 25% ✓. Use (½)ⁿ = remaining fraction, solve for n.",sub:"Half-Life",t:"m"},
+{q:"400g sample of I-131 (half-life = 8 days). Amount remaining after 24 days?",o:["200g","100g","50g","25g"],a:2,e:"24 days ÷ 8 days/half-life = 3 half-lives. 400 → 200 → 100 → 50g. I-131 is used medically precisely because it decays quickly (8 days) — it treats the thyroid then becomes negligible within weeks!",sub:"Half-Life",t:"m"},
+{q:"100g of C-14 (half-life = 5,730 years). Amount after 11,460 years?",o:["50g","25g","75g","12.5g"],a:1,e:"11,460 ÷ 5,730 = 2 half-lives. 100 → 50 → 25g. C-14 dating works because we know 5,730 years is one half-life. Measuring C-14 remaining in organic material reveals its age — accurate up to ~50,000 years!",sub:"Half-Life",t:"m"},
+{q:"²³⁸₉₂U decays by alpha emission. Products are ⁴₂He and:",o:["²³⁴₉₀Th (thorium)","²³⁴₉₁Pa (protactinium)","²³⁸₉₀Th (thorium)","²³⁶₉₂U (uranium)"],a:0,e:"Alpha decay: mass # decreases by 4, atomic # decreases by 2. U-238: mass 238−4=234, atomic 92−2=90. Z=90 = Thorium (Th). Product is ²³⁴₉₀Th. Conservation: mass (238=4+234 ✓) and atomic # (92=2+90 ✓) are conserved!",sub:"Nuclear Equations",t:"m"},
+{q:"BETA DECAY: ¹⁴₆C → ¹⁴₇N + ?",o:["⁴₂He (alpha particle)","⁰₀γ (gamma ray)","⁰₋₁e (beta particle/electron)","⁰₊₁e (positron)"],a:2,e:"BETA DECAY: a neutron converts to a proton + beta particle (electron). Mass # unchanged (14→14 ✓). Atomic # increases by 1 (6→7 ✓). C-14 decays to N-14 by beta emission — this is the basis of radiocarbon dating!",sub:"Nuclear Equations",t:"m"},
+{q:"In nuclear reactions, what is ALWAYS conserved?",o:["Number of protons only","Number of neutrons only","Both mass number AND atomic number","Isotope identity"],a:2,e:"In NUCLEAR equations: MASS NUMBER (protons + neutrons) and ATOMIC NUMBER (protons) are BOTH conserved. The sum of mass numbers on left = sum on right. Same for atomic numbers. Use conservation to find unknown products!",sub:"Nuclear Equations",t:"c"},
+{q:"Which source produces MORE energy per gram of fuel: fission or fusion?",o:["Fission — nuclear power plants prove this","Both produce equal energy","Fusion — but requires extreme conditions to initiate","Chemical combustion — it's the most common energy source"],a:2,e:"FUSION releases MORE energy per gram than fission. This is why the Sun (fusion) generates such enormous energy. However, fusion requires extreme conditions (millions of degrees) that make it currently impractical for power generation — though research continues!",sub:"Fission vs Fusion",t:"c"},
+{q:"Rn-222 (Z=86) undergoes alpha decay. What is the daughter nucleus?",o:["Po-218 (Z=84)","Pb-220 (Z=82)","Bi-218 (Z=83)","Ra-226 (Z=88)"],a:0,e:"Alpha decay: mass # −4, atomic # −2. Rn-222: mass 222−4=218, atomic 86−2=84. Z=84 = Polonium (Po). Product is ²¹⁸₈₄Po. Conservation: 222=4+218 ✓; 86=2+84 ✓. Pierre and Marie Curie discovered polonium!",sub:"Nuclear Equations",t:"m"},
+{q:"Which radioisotope is used for GEOLOGICAL DATING (dating ancient rocks)?",o:["C-14 (half-life 5,730 years — for organic material only)","I-131 (half-life 8 days — too short)","U-238 (half-life 4.51 billion years — for rocks)","Tc-99m (half-life 6 hours — for medical imaging)"],a:2,e:"U-238 (half-life 4.51 BILLION years) is ideal for dating ancient rocks and minerals that are billions of years old. C-14 (5,730 years) is used for organic material up to ~50,000 years old — too short for geological time scales. Match the half-life to the age range!",sub:"Radioactive Applications",t:"c"}
+]}
+];
+
+// ══════════════════════════════════════════════════════════════
+// ORIGINAL 125 QUESTIONS (exact text from PDF)
+// ══════════════════════════════════════════════════════════════
+var ORIGINAL_125=[
+{unit:"Atomic Structure",qs:["What is the location of each subatomic particle?","How many protons does element X have?","How many neutrons does element X have?","How many electrons does ATOM X have?","How many electrons does ION X have?","Which subatomic particles have a value of one atomic mass unit?","What is the mass of element X?","What is element X's nuclear charge?","What is element X atomic number?","Define isotopes in terms of subatomic particles.","How is spectra produces in terms of energy levels and subatomic particles?","Draw the Bohr diagram of element X."]},
+{unit:"Periodic Table",qs:["What is the name of the group with X valence electrons?","What element has similar properties to element X?","As you go across a period explain what happens to atomic radius and why.","As you go across a period explain what happens to ionization energy and why.","As you go across a period explain what happens to electronegativity and why.","As you go down a group explain what happens to atomic radius and why.","As you go down a group explain what happens to ionization energy and why.","As you go down a group explain what happens to electronegativity and why.","Which element has the greatest tendency to attract electrons?","Which element requires the most energy to lose its most loosely bound electron?","Locate the metals, nonmetals, and metalloids and define their properties.","Which element(s) tend(s) not to bond? Why?"]},
+{unit:"Bonding",qs:["What type of substances cannot be broken down by chemical change?","In terms of products formed, state the difference between and physical and chemical reaction.","In terms of types of elements define ionic, covalent and metallic bonds.","In terms of electrons define ionic, covalent and metallic bonds.","In terms of conducting electricity define ionic, covalent and metallic bonds.","Which compounds exhibit two types of bonding?","When a bond is broken, is energy absorbed or released?","What elements is a compound would create the most polar bond? And the least polar?","Draw the following molecules' Lewis Structures: H₂O, CH₄, NH₃, H₂, HCl, CO₂.","For the above, determine if they are polar molecules and if so, show their poles.","Explain if compound XY will dissolve in water based on polarity.","What types of forces does water have and why are they so strong?"]},
+{unit:"Moles",qs:["What is the gram formula mass of XY?","How many moles of atoms are in XY₂Z?","How many moles of XY (gram formula mass =42g/mol) are present in an 84 gram sample?","What is the classification of the reactions: X+Y→XY, XY→X+Y, XY+Z→XZ+Y, MX+YZ→MZ+XY","If 3.00 grams of X react with 5.00 grams of Y, how many grams of XY form?","In all chemical reactions, what three things are always conserved?","What is the empirical formula of X₂Y₄?","What is the molecular formula of compound XY (gfm=42 g/mol) if the molecular mass equals 84 g/mol?","What element has the lowest density?"]},
+{unit:"Heat",qs:["What is a measure of kinetic energy?","In terms of kinetic and potential energy, what happens during a phase change?","In terms of kinetic and potential energy, what happens are the temperature of a solid substances rises?","Calculate the heat involved when 100 grams of water changes from 10 to 100°C.","Calculate the heat involved when 100 grams of water changes from the gas to the liquid phase.","Calculate the heat involved when 100 grams of water changes from the liquid to the solid phase.","Is the specific heat of most metals' higher or lower than water's specific heat? Explain.","Which reaction on Table I releases the most heat?","Which salt, when dissolved in water, absorbs the most heat?","Describe sublimation."]},
+{unit:"Gases",qs:["According to Kinetic Molecular Theory, how are gas particles arranged?","According to Kinetic Molecular Theory, what conditions make a gas behave ideally?","According to Kinetic Molecular Theory, what conditions cause a gas to deviate from ideal gas behavior?","What is standard temperature and pressure?","Which gas diffuses the fastest?","As pressure increases, what happens to the volume of a gas?","What relationship do pressure and temperature have in the gas phase?","As temperature increases, what happens to the volume of a gas?","What conditions of temperature and pressure causes a gas to be the least soluble?","If two gases at the same temperature and pressure have the same volume, what else is equal?"]},
+{unit:"Solutions",qs:["What type of matter can be separated using physical means such as filtration and distillation?","How does distillation separate matter?","Is compound XY soluble?","If a solute dissolves in a solution, is it heterogeneous or homogeneous? What symbol will it have?","What is the vapor pressure of water at 50°C?","Which compound on table H has the weakest intermolecular forces of attraction?","Which saturated salt is the most concentrated at 30°C?","Which gas is the least soluble at 80°C?","Is the solution of 10g of XY at 10°C saturated, unsaturated or supersaturated?","Calculate the parts per million of 0.010 grams of O₂ in 10000 grams of water.","What affect does adding a solute have on the boiling point of water?","What affect does adding a solute have on the freezing point of water?"]},
+{unit:"Kinetics",qs:["In terms of collision theory, what factors can increase the rate of reaction?","In terms of activation energy, what can a catalyst do the rate of a reaction?","In terms of heat or reactants and products, explain how the heat of reaction is calculated.","In terms of LeChatelier's Principle, explain why when Nitrogen is added to synthesize water at equilibrium, hydrogen decreases in concentration.","Define equilibrium in terms of quantities of reactants and products.","Define equilibrium in terms of rate of reactions.","When a gas is added to a system at equilibrium, explain why the reaction shifts to the side with less moles."]},
+{unit:"Organic Chemistry",qs:["What are organic compounds?","What are hydrocarbons?","What is the general formula of an alkane?","How many electrons are shared per bond in an alkyne?","What compound(s) are saturated hydrocarbons?","In terms of polarity, which functional groups could dissolve in water?","Define isomers in terms of molecular and structural formulas.","What type of organic reaction forms only one product from a hydrocarbon with multiple bonds?","What type of organic reaction forms soaps? Alcohols? Plastics? Esters?"]},
+{unit:"Acids and Bases",qs:["What property allows a substance to be classified as an electrolyte?","What ion is always formed when an acid is dissolved in water?","What ions is the only negative ion present when a base dissolves in water?","Define and give an example of a neutralization reaction.","What is the pH range for acids? And for bases?","If the pH decreases by a factor of 100, what happens to the concentration of hydronium ions?","What is the color of phenolphthalein when mixed with NaOH?","What is the name of the process used to determine the concentration of an unknown acid or base?"]},
+{unit:"Redox",qs:["How can you determine if a reaction is redox?","In terms of oxidation numbers, what happens if an element is oxidized?","In terms of electrons what happens when an element is reduced?","What happens to all the subatomic particles when a redox reaction takes place?","In which electrode's half-cell does oxidation take place?","Which element is the best at oxidizing?","Electrons always travel through what device and from which electrode?","What is the purpose of the salt bridge?","In terms of spontaneity, describe a voltaic cell.","Which electrode always gains mass?","In terms of electrical & chemical energy, explain the difference between a voltaic and electrolytic cell.","What is the purpose of the battery in an electrolytic cell?"]},
+{unit:"Nuclear Chemistry",qs:["Why do some isotopes release particles from the nucleus?","Which emission is the most massive?","Which emission is not affected by a magnetic or electric field?","Which emission has the greatest penetrating power?","What decay mode will element X have?","What is the half-life of element X?","Which radioisotope is the most stable on table N?","Which isotope is used to treat the thyroid? Date rocks? Date organic material? Treat cancer?","In terms of reactants, what is the major difference between natural and artificial transmutation?","In terms of large and small atoms, state the difference between fission and fusion.","In terms of energy needed, what is the difference between fission and fusion?","Name one benefit and one risk of using radioactive elements."]}
+];
+
+// ══════════════════════════════════════════════════════════════
+// APP STATE
+// ══════════════════════════════════════════════════════════════
+var state={
+  currentView:'home',currentUnit:0,currentQ:0,answered:false,
+  examMode:false,examQs:[],examQ:0,
+  shuffledOpts:[],correctOptIdx:-1,
+  unitScores:UNITS.map(function(){return {correct:0,total:0,results:[]};})
+};
+
+// ══ THEME ══
+function toggleTheme(){
+  var d=document.body.classList.toggle('dark');
+  document.getElementById('themeBtn').textContent=d?'☀️':'🌙';
+  try{localStorage.setItem('lcTheme',d?'dark':'light');}catch(e){}
+}
+(function(){try{if(localStorage.getItem('lcTheme')==='dark'){document.body.classList.add('dark');document.getElementById('themeBtn').textContent='☀️';}}catch(e){}})();
+
+// ══ VIEW MANAGEMENT ══
+function showView(v){
+  ['home','quiz','results','print'].forEach(function(id){
+    document.getElementById('view-'+id).style.display=(id===v)?'block':'none';
+  });
+  state.currentView=v;
+  if(v==='home')updateHome();
+}
+
+// ══ HOME ══
+function updateHome(){
+  var tc=0,td=0;
+  state.unitScores.forEach(function(s){tc+=s.correct;td+=s.total;});
+  var el=document.getElementById('homeCorrect');if(el)el.textContent=tc;
+  var el2=document.getElementById('homeDone');if(el2)el2.textContent=td;
+  var pct=Math.round(td/288*100);
+  var op=document.getElementById('opPct');if(op)op.textContent=pct+'% Complete';
+  var of=document.getElementById('opFill');if(of)of.style.width=pct+'%';
+  var gs=document.getElementById('globalScore');if(gs)gs.textContent=tc+'/'+td;
+  renderUnitGrid();
+}
+function renderUnitGrid(){
+  var g=document.getElementById('unitGrid');if(!g)return;
+  g.innerHTML=UNITS.map(function(u,i){
+    var sc=state.unitScores[i];
+    var sl=sc.total>0?sc.correct+'/'+u.qs.length:'—';
+    var fp=sc.total>0?Math.round(sc.total/u.qs.length*100):0;
+    return '<div class="unit-card" onclick="startUnit('+i+')">'
+      +'<div class="uc-stripe"></div><div class="uc-body">'
+      +'<div class="uc-num">Unit '+(i+1)+'</div>'
+      +'<div class="uc-icon">'+u.emoji+'</div>'
+      +'<div class="uc-name">'+u.name+'</div>'
+      +'<div class="uc-meta"><span class="uc-count">'+u.qs.length+' questions</span><span class="uc-score">'+sl+'</span></div>'
+      +'<div class="uc-progress"><div class="uc-prog-fill" style="width:'+fp+'%"></div></div>'
+      +'</div></div>';
+  }).join('');
+}
+
+// ══ SHUFFLE ══
+function shuffleArr(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
+  return a;
+}
+function shuffleOpts(q){
+  var idxs=[0,1,2,3];
+  for(var i=3;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idxs[i];idxs[i]=idxs[j];idxs[j]=t;}
+  return{shuffled:idxs.map(function(x){return q.o[x];}),correctIdx:idxs.indexOf(q.a)};
+}
+
+// ══ START UNIT ══
+function startUnit(idx){
+  state.currentUnit=idx;state.currentQ=0;state.examMode=false;state.answered=false;
+  document.getElementById('examBar').className='exam-bar';
+  showView('quiz');renderQuestion();
+}
+
+// ══ EXAM MODE (random 50) ══
+function startExam(){
+  var all=[];
+  UNITS.forEach(function(u,ui){u.qs.forEach(function(q,qi){all.push(Object.assign({},q,{unitIdx:ui,qIdx:qi}));});});
+  state.examQs=shuffleArr(all).slice(0,50);
+  state.examMode=true;state.examQ=0;state.answered=false;
+  // Reset exam scores
+  state.unitScores=UNITS.map(function(){return{correct:0,total:0,results:[]};});
+  document.getElementById('examBar').className='exam-bar show';
+  showView('quiz');renderQuestion();
+}
+
+// ══ RENDER QUESTION ══
+function renderQuestion(){
+  var q,unitName,unitEmoji;
+  if(state.examMode){
+    q=state.examQs[state.examQ];
+    unitName=UNITS[q.unitIdx].name;
+    unitEmoji=UNITS[q.unitIdx].emoji;
+  } else {
+    q=UNITS[state.currentUnit].qs[state.currentQ];
+    unitName=UNITS[state.currentUnit].name;
+    unitEmoji=UNITS[state.currentUnit].emoji;
+  }
+  state.answered=false;
+  var sh=shuffleOpts(q);
+  state.shuffledOpts=sh.shuffled;state.correctOptIdx=sh.correctIdx;
+  var sc=state.unitScores[state.examMode?q.unitIdx:state.currentUnit];
+  var total=state.examMode?50:UNITS[state.currentUnit].qs.length;
+  var cur=state.examMode?state.examQ:state.currentQ;
+  document.getElementById('quizUnitLabel').innerHTML=unitEmoji+' <span>'+unitName+'</span>';
+  document.getElementById('qCounter').innerHTML=(cur+1)+'<small>of '+total+'</small>';
+  document.getElementById('scoreBadge').textContent=sc.correct+'/'+sc.total;
+  document.getElementById('subBadge').textContent=q.sub||'';
+  document.getElementById('quizProg').style.width=Math.round(cur/total*100)+'%';
+  var LETTERS=['A','B','C','D'];
+  var typeBadge='<span class="q-type-badge '+(q.t==='m'?'math':'concept')+'">'+(q.t==='m'?'🔢 Math':'💡 Concept')+'</span>';
+  var opts=state.shuffledOpts.map(function(opt,i){
+    return '<button class="opt-btn" onclick="selOpt('+i+')">'
+      +'<span class="opt-letter">'+LETTERS[i]+'</span>'
+      +'<span class="opt-text">'+opt+'</span></button>';
+  }).join('');
+  document.getElementById('questionContainer').innerHTML=
+    '<div class="q-card">'+typeBadge
+    +'<div class="q-num-badge">Q'+(cur+1)+'</div>'
+    +'<div class="q-text">'+q.q+'</div>'
+    +'<div class="opts-grid" id="optsGrid">'+opts+'</div>'
+    +'<div class="explanation" id="exp"></div></div>';
+  document.getElementById('nextBtn').className='next-btn';
+}
+
+// ══ SELECT OPTION ══
+function selOpt(idx){
+  if(state.answered)return;
+  state.answered=true;
+  var q=state.examMode?state.examQs[state.examQ]:UNITS[state.currentUnit].qs[state.currentQ];
+  var isCorrect=(idx===state.correctOptIdx);
+  var sc=state.unitScores[state.examMode?q.unitIdx:state.currentUnit];
+  sc.total++;if(isCorrect)sc.correct++;
+  // Store full option list for exam review rendering
+  sc.results.push({q:q.q,sub:q.sub||'General',t:q.t||'c',
+    selected:state.shuffledOpts[idx],
+    correct:state.shuffledOpts[state.correctOptIdx],
+    isCorrect:isCorrect,e:q.e,
+    allOpts:state.shuffledOpts.slice(),
+    selIdx:idx,corIdx:state.correctOptIdx});
+
+  if(state.examMode){
+    // EXAM MODE: just highlight selected — no reveal
+    document.querySelectorAll('.opt-btn').forEach(function(b,i){
+      b.classList.add('disabled');
+      if(i===idx)b.classList.add('exam-selected');
+    });
+    // No explanation shown during exam
+  } else {
+    // UNIT MODE: reveal immediately
+    document.querySelectorAll('.opt-btn').forEach(function(b,i){
+      b.classList.add('disabled');
+      if(i===state.correctOptIdx)b.classList.add('correct');
+      else if(i===idx&&!isCorrect)b.classList.add('wrong');
+    });
+    var exp=document.getElementById('exp');
+    exp.className='explanation open '+(isCorrect?'correct':'wrong');
+    exp.innerHTML='<div class="exp-result">'+(isCorrect?'✓ Correct!':'✗ Incorrect')+'</div>'
+      +'<div class="exp-text">'+q.e+'</div>'
+      +(!isCorrect?'<div class="exp-correct-label">✓ Correct: '+state.shuffledOpts[state.correctOptIdx]+'</div>':'');
+  }
+
+  var nb=document.getElementById('nextBtn');
+  var isLastQ=state.examMode?(state.examQ>=49):(state.currentQ>=UNITS[state.currentUnit].qs.length-1);
+  nb.textContent=isLastQ?(state.examMode?'SUBMIT EXAM & SEE RESULTS →':'SEE RESULTS →'):'NEXT →';
+  nb.className='next-btn show';
+  var gs=document.getElementById('globalScore');
+  var tc=0,td=0;state.unitScores.forEach(function(s){tc+=s.correct;td+=s.total;});
+  if(gs)gs.textContent=tc+'/'+td;
+  document.getElementById('scoreBadge').textContent=sc.correct+'/'+sc.total;
+}
+
+// ══ NEXT QUESTION ══
+function nextQuestion(){
+  if(state.examMode){
+    if(state.examQ<49){state.examQ++;renderQuestion();}else{showResults();}
+  } else {
+    if(state.currentQ<UNITS[state.currentUnit].qs.length-1){state.currentQ++;renderQuestion();}else{showResults();}
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ══ RESULTS & ANALYSIS ══
+function showResults(){
+  document.getElementById('examBar').className='exam-bar';
+  var sc,unitName,totalQs;
+  if(state.examMode){
+    var tc=0,td=0;state.unitScores.forEach(function(s){tc+=s.correct;td+=s.total;});
+    unitName='⚡ FULL EXAM (50 Random Questions)';totalQs=50;
+    document.getElementById('resScore').innerHTML=tc+'<span>/50</span>';
+    document.getElementById('resPct').textContent=Math.round(tc/50*100)+'% Correct';
+  } else {
+    sc=state.unitScores[state.currentUnit];
+    unitName=UNITS[state.currentUnit].emoji+' '+UNITS[state.currentUnit].name;
+    totalQs=UNITS[state.currentUnit].qs.length;
+    document.getElementById('resScore').innerHTML=sc.correct+'<span>/'+totalQs+'</span>';
+    var pct=Math.round(sc.correct/totalQs*100);
+    document.getElementById('resPct').textContent=pct+'% Correct';
+  }
+  document.getElementById('resUnitName').textContent=unitName;
+  var tc2=state.examMode?0:state.unitScores[state.currentUnit].correct;
+  if(state.examMode){state.unitScores.forEach(function(s){tc2+=s.correct;});}
+  var p=state.examMode?Math.round(tc2/50*100):Math.round(tc2/totalQs*100);
+  document.getElementById('resMsg').textContent=p>=90?'🏆 Outstanding — Regents Ready!':p>=75?'💪 Strong work — review what you missed.':p>=60?'📚 Good effort — more review will lock it in.':'⚡ Keep going — you\'ve got this!';
+  // Add exam review header label
+  var rl=document.getElementById('reviewList');
+  if(rl && state.examMode){
+    rl.innerHTML='<div style="font-family:\'Bebas Neue\';font-size:18px;letter-spacing:1.5px;color:var(--text);margin:20px 0 12px;padding-bottom:10px;border-bottom:2px solid var(--red);">📋 FULL EXAM REVIEW — ALL 50 QUESTIONS</div>';
+  }
+  renderAnalysis();
+  renderReview();
+  showView('results');
+}
+function renderAnalysis(){
+  var allResults=[];
+  if(state.examMode){state.unitScores.forEach(function(s){allResults=allResults.concat(s.results);});}
+  else{allResults=state.unitScores[state.currentUnit].results;}
+  var subs={};
+  allResults.forEach(function(r){
+    if(!subs[r.sub])subs[r.sub]={correct:0,total:0};
+    subs[r.sub].total++;if(r.isCorrect)subs[r.sub].correct++;
+  });
+  var html=Object.keys(subs).sort().map(function(sub){
+    var s=subs[sub];
+    var pct=Math.round(s.correct/s.total*100);
+    var cls=pct>=90?'strong':pct>=70?'practice':'review';
+    var lbl=pct>=90?'✅ STRONG':pct>=70?'📚 KEEP PRACTICING':'⚠️ NEEDS REVIEW';
+    return '<div class="sub-row '+cls+'">'
+      +'<div class="sub-name">'+sub+'</div>'
+      +'<div class="sub-bar-wrap"><div class="sub-bar-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="sub-score">'+s.correct+'/'+s.total+' ('+pct+'%)</div>'
+      +'<div class="sub-label">'+lbl+'</div></div>';
+  }).join('');
+  document.getElementById('subtopicList').innerHTML=html||'<p style="color:var(--muted);font-size:13px">No data yet.</p>';
+}
+function renderReview(){
+  var results=[];
+  if(state.examMode){state.unitScores.forEach(function(s){results=results.concat(s.results);});}
+  else{results=state.unitScores[state.currentUnit].results;}
+
+  var LETTERS=['A','B','C','D'];
+
+  var html=results.map(function(r,i){
+    var cls=r.isCorrect?'correct':'wrong';
+
+    if(state.examMode){
+      // EXAM MODE: full reveal with all options shown
+      var opts='';
+      if(r.allOpts){
+        r.allOpts.forEach(function(opt,oi){
+          var rowCls='';
+          if(oi===r.corIdx){rowCls='er-ans-row show-correct';}
+          else if(oi===r.selIdx&&!r.isCorrect){rowCls='er-ans-row student-wrong';}
+          else{return;}
+          var prefix=oi===r.corIdx?'✓ ':' ✗ Your answer: ';
+          opts+='<div class="'+rowCls+'">'+prefix+opt+'</div>';
+        });
+      } else {
+        opts=(r.isCorrect
+          ?'<div class="er-ans-row student-correct">✓ '+r.correct+'</div>'
+          :'<div class="er-ans-row student-wrong">✗ Your answer: '+r.selected+'</div>'
+          +'<div class="er-ans-row show-correct">✓ Correct: '+r.correct+'</div>');
+      }
+      return '<div class="exam-reveal-card '+cls+'">'
+        +'<div class="er-header">'
+        +'<span class="er-qnum">Q'+(i+1)+'</span>'
+        +'<span class="er-sub">'+r.sub+'</span>'
+        +'<span class="er-result '+cls+'">'+(r.isCorrect?'✓ CORRECT':'✗ INCORRECT')+'</span>'
+        +'</div>'
+        +'<div class="er-q">'+r.q+'</div>'
+        +'<div class="er-answers">'+opts+'</div>'
+        +'<div class="er-exp">'+r.e+'</div>'
+        +'</div>';
+    } else {
+      // UNIT MODE: compact review
+      return '<div class="review-item '+cls+'">'
+        +'<div class="ri-q"><strong>'+(i+1)+'.</strong> '+r.q
+        +' <span style="font-size:10px;background:var(--border);padding:1px 6px;border-radius:4px;margin-left:4px;">'+r.sub+'</span></div>'
+        +(r.isCorrect
+          ?'<div class="ri-ans ri-c">✓ '+r.correct+'</div>'
+          :'<div class="ri-ans ri-w">✗ Your answer: '+r.selected+'</div><div class="ri-ans ri-c">✓ Correct: '+r.correct+'</div>')
+        +'</div>';
+    }
+  }).join('');
+  // Show exam header for exam mode
+  var rh = document.getElementById('reviewHeader');
+  if(rh) rh.style.display = state.examMode ? 'flex' : 'none';
+  document.getElementById('reviewCards').innerHTML = html;
+}
+
+function filterReview(type, btn){
+  document.querySelectorAll('.efb').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.exam-reveal-card, .review-item').forEach(function(card){
+    if(type==='all') card.style.display='';
+    else if(type==='wrong') card.style.display = card.classList.contains('wrong') ? '' : 'none';
+    else if(type==='correct') card.style.display = card.classList.contains('correct') ? '' : 'none';
+  });
+}
+
+// ══ PRINT / DOWNLOAD ANALYSIS ══
+function printAnalysis(){
+  var style=document.createElement('style');
+  style.id='printAnalStyle';
+  style.textContent='@media print{body>*:not(.main){display:none!important;}.main>*:not(#view-results){display:none!important;}#view-results>*:not(.analysis-card){display:none!important;}.analysis-card{display:block!important;}.ac-actions{display:none!important;}}';
+  document.head.appendChild(style);
+  window.print();
+  setTimeout(function(){var s=document.getElementById('printAnalStyle');if(s)s.remove();},2000);
+}
+function downloadAnalysis(){
+  var lines=['LEVEL UP CHEMISTRY — PERFORMANCE ANALYSIS','Dr. Sacrestano | NYS Regents Chemistry','Generated: '+new Date().toLocaleDateString(),'',''];
+  var unitName=state.examMode?'Full Exam (50 Random Questions)':UNITS[state.currentUnit].name;
+  lines.push('Unit: '+unitName);lines.push('='.repeat(50));lines.push('');
+  var allResults=[];
+  if(state.examMode){state.unitScores.forEach(function(s){allResults=allResults.concat(s.results);});}
+  else{allResults=state.unitScores[state.currentUnit].results;}
+  var subs={};
+  allResults.forEach(function(r){
+    if(!subs[r.sub])subs[r.sub]={correct:0,total:0};
+    subs[r.sub].total++;if(r.isCorrect)subs[r.sub].correct++;
+  });
+  lines.push('SUBTOPIC PERFORMANCE:');lines.push('-'.repeat(40));
+  var strong=[],practice=[],review=[];
+  Object.keys(subs).sort().forEach(function(sub){
+    var s=subs[sub];var p=Math.round(s.correct/s.total*100);
+    var lbl=p>=90?'✅ STRONG':p>=70?'📚 KEEP PRACTICING':'⚠️ NEEDS REVIEW';
+    var line=sub+': '+s.correct+'/'+s.total+' ('+p+'%) — '+lbl;
+    lines.push(line);
+    if(p>=90)strong.push(sub);else if(p>=70)practice.push(sub);else review.push(sub);
+  });
+  lines.push('');lines.push('SUMMARY:');
+  lines.push('✅ Strong (≥90%): '+(strong.length?strong.join(', '):'None yet'));
+  lines.push('📚 Keep Practicing (70-89%): '+(practice.length?practice.join(', '):'None'));
+  lines.push('⚠️ Needs Review (<70%): '+(review.length?review.join(', '):'None!'));
+  lines.push('');lines.push('QUESTION REVIEW:');lines.push('-'.repeat(40));
+  allResults.forEach(function(r,i){
+    lines.push((i+1)+'. ['+r.sub+'] '+r.q);
+    if(r.isCorrect){lines.push('   ✓ Correct: '+r.correct);}
+    else{lines.push('   ✗ Your answer: '+r.selected);lines.push('   ✓ Correct: '+r.correct);}
+    lines.push('');
+  });
+  var blob=new Blob([lines.join('\n')],{type:'text/plain'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='chemistry_analysis_'+(new Date().toISOString().split('T')[0])+'.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+
+function retryUnit(){
+  state.unitScores[state.currentUnit]={correct:0,total:0,results:[]};
+  startUnit(state.currentUnit);
+}
+function nextUnit(){
+  if(state.currentUnit<UNITS.length-1)startUnit(state.currentUnit+1);
+  else goHome();
+}
+function goHome(){
+  state.examMode = false;
+  state.answered = false;
+  var bar = document.getElementById('examBar');
+  if(bar) bar.className = 'exam-bar';
+  showView('home');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ══ PRINT ORIGINAL 125 ══
+function showPrintView(){
+  var num=0;
+  var html=ORIGINAL_125.map(function(u){
+    var qs=u.qs.map(function(q){
+      num++;
+      return '<div class="print-q"><div class="pq-num">'+num+'.</div><div class="pq-text">'+q+'</div></div>';
+    }).join('');
+    return '<div class="print-unit-sec"><div class="pus-title">'+u.unit.toUpperCase()+'</div>'+qs+'</div>';
+  }).join('');
+  document.getElementById('printContent').innerHTML=html;
+  showView('print');
+}
+
+// Init — explicitly show home on load
+state.examMode = false;
+state.answered = false;
+// Force all views hidden except home
+['quiz','results','print'].forEach(function(id){
+  var el = document.getElementById('view-'+id);
+  if(el) el.style.display = 'none';
+});
+var homeEl = document.getElementById('view-home');
+if(homeEl) homeEl.style.display = 'block';
+updateHome();
+</script>
+</body>
+</html>
